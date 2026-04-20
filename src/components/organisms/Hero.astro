@@ -51,11 +51,7 @@ const profileImage = "/images/profile-placeholder.jpg";
       <div class="image-bg-effect"></div>
       {/* Placeholder image, we'll need to generate or provide one */}
       <div class="portrait-placeholder">
-        <img
-          src="https://images.unsplash.com/photo-1542458408-5604169c9b13?q=80&w=2692&auto=format&fit=crop"
-          alt="Miguel Damiron"
-          class="portrait-img"
-        />
+        <img src="/miguel.png" alt="Miguel Damiron" class="portrait-img" />
       </div>
     </div>
 
@@ -105,11 +101,12 @@ const profileImage = "/images/profile-placeholder.jpg";
 
   .image-bg-effect {
     position: absolute;
+    opacity: 0.2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
+    width: 150%;
+    height: 150%;
     background: radial-gradient(
       circle,
       var(--color-accent-hover) 0%,
@@ -125,8 +122,13 @@ const profileImage = "/images/profile-placeholder.jpg";
     overflow: hidden;
     position: relative;
     /* Basic styling for placeholder box in case image fails */
-    background: linear-gradient(145deg, var(--color-surface), var(--color-neutral-800));
-    box-shadow: 0 20px 40px color-mix(in srgb, var(--color-neutral-950) 40%, transparent);
+    background: linear-gradient(
+      145deg,
+      var(--color-surface),
+      var(--color-neutral-950)
+    );
+    box-shadow: 0 20px 40px
+      color-mix(in srgb, var(--color-neutral-950) 40%, transparent);
   }
 
   .portrait-img {
