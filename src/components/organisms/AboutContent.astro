@@ -1,0 +1,91 @@
+---
+import Typography from '../atoms/Typography.astro';
+
+/**
+ * AboutContent Organism
+ * Two-column layout for the "Architecting Clarity" section.
+ */
+---
+
+<section id="about" class="about-section section-padding bg-surface">
+  <div class="container about-container">
+    <div class="about-title">
+      <Typography tag="h2" size="4xl" weight="black" class="uppercase">
+        Architecting<br/>Clarity.
+      </Typography>
+    </div>
+    
+    <div class="about-text">
+      <Typography tag="p" size="lg" weight="medium" class="mb-6">
+        I transform complex data ecosystems into streamlined, visual narratives that drive executive decision-making. With a background rooted in both technical management and deep-dive analytics, I build the bridges that allow businesses to navigate through uncertainty.
+      </Typography>
+      
+      <Typography tag="p" color="muted" class="mb-8">
+        Specializing in the Microsoft Stack and Tableau, my focus is on creating automated, scalable solutions that reduce manual reporting overhead by up to 80%, allowing teams to focus on strategy rather than synthesis.
+      </Typography>
+
+      <a href="#approach" class="read-more-link">
+        <Typography tag="span" size="sm" weight="bold" class="uppercase tracking-wider">
+          Read More About My Approach →
+        </Typography>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--space-xl) * 2);
+    align-items: start;
+  }
+
+  .about-title {
+    position: sticky;
+    top: 120px;
+  }
+
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-primary);
+    position: relative;
+    padding-bottom: 4px;
+  }
+  
+  .read-more-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+
+  .read-more-link:hover {
+    color: var(--color-accent);
+  }
+
+  .read-more-link:hover::after {
+    width: 100%;
+  }
+
+  .mb-6 { margin-bottom: 1.5rem; }
+  .mb-8 { margin-bottom: 2rem; }
+  .uppercase { text-transform: uppercase; }
+  .tracking-wider { letter-spacing: 0.05em; }
+
+  @media (max-width: 900px) {
+    .about-container {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    
+    .about-title {
+      position: static;
+    }
+  }
+</style>

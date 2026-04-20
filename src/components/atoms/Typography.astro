@@ -1,0 +1,132 @@
+---
+/**
+ * Typography Component
+ * Standardizes headings and text across the site.
+ *
+ * @param {string} tag - 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span'
+ * @param {string} size - 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'hero'
+ * @param {string} color - 'primary' | 'muted' | 'accent'
+ * @param {string} weight - 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
+ * @param {string} className - Additional CSS classes
+ */
+const {
+  tag: Tag = "p",
+  size = "md",
+  color = "primary",
+  weight = "medium",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const sizes = {
+  xs: "text-xs",
+  sm: "text-sm",
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl shadow-heading",
+  hero: "text-hero uppercase tracking-tighter",
+};
+
+const colors = {
+  primary: "text-primary",
+  muted: "text-muted",
+  accent: "text-accent",
+  secondary: "text-secondary",
+};
+
+const weights = {
+  light: "font-light",
+  normal: "font-normal",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
+  black: "font-black",
+};
+
+const classes = [sizes[size], colors[color], weights[weight], className].join(
+  " ",
+);
+---
+
+<Tag class={classes} {...rest}>
+  <slot />
+</Tag>
+
+<style>
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  .text-base {
+    font-size: 1rem;
+  }
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  .text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  .text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .text-hero {
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .font-light {
+    font-weight: 300;
+  }
+  .font-normal {
+    font-weight: 400;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .font-semibold {
+    font-weight: 600;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  .font-black {
+    font-weight: 900;
+  }
+
+  .text-primary {
+    color: var(--color-text-primary);
+  }
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .shadow-heading {
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-tighter {
+    letter-spacing: -0.05em;
+  }
+</style>

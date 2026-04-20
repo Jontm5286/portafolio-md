@@ -1,0 +1,90 @@
+---
+/**
+ * Badge Component
+ * Small pills for labels, categories or statuses.
+ *
+ * @param {string} variant - 'default' | 'accent' | 'outline'
+ * @param {string} className - Additional CSS classes
+ */
+const { variant = "default", class: className = "", ...rest } = Astro.props;
+
+const variants = {
+  default: "bg-surface text-accent",
+  accent: "bg-accent text-white",
+  outline: "border border-accent text-accent",
+};
+
+const baseStyles =
+  "inline-flex items-center gap-2 px-4 py-1 text-xs font-bold rounded-full uppercase tracking-wider";
+const classes = [baseStyles, variants[variant], className].join(" ");
+---
+
+<span class={classes} {...rest}>
+  <div class="badge-dot"></div>
+  <slot />
+</span>
+
+<style>
+  .inline-flex {
+    display: inline-flex;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-wider {
+    letter-spacing: 0.05em;
+  }
+  .border {
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: currentColor;
+    flex-shrink: 0;
+  }
+
+  .bg-surface {
+    background-color: var(
+      --color-secondary
+    ); /* Using secondary as a soft background for light mode badges */
+  }
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+  .text-white {
+    color: var(--color-neutral-0);
+  }
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+</style>

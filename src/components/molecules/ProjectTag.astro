@@ -1,0 +1,25 @@
+---
+import Badge from '../atoms/Badge.astro';
+
+/**
+ * ProjectTag Molecule
+ * Specific badge for project categories.
+ * 
+ * @param {string} label - Tag text
+ */
+const { label } = Astro.props;
+---
+
+<Badge variant="outline" class="project-tag">
+  {label}
+</Badge>
+
+<style>
+  .project-tag {
+    background-color: color-mix(in srgb, var(--color-surface) 60%, transparent);
+    backdrop-filter: blur(4px);
+    border-color: var(--color-border);
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+  }
+</style>

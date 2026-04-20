@@ -1,0 +1,199 @@
+---
+import Typography from "../atoms/Typography.astro";
+import Badge from "../atoms/Badge.astro";
+import Button from "../atoms/Button.astro";
+import StatItem from "../molecules/StatItem.astro";
+
+// A placeholder for the profile image for now.
+const profileImage = "/images/profile-placeholder.jpg";
+---
+
+<section id="home" class="hero-section section-padding">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <Badge variant="default" class="mb-6">Senior Data & BI Manager</Badge>
+
+      <div class="hero-title-group mb-6">
+        <Typography
+          tag="h1"
+          size="hero"
+          weight="medium"
+          color="accent"
+          class="leading-none block"
+        >
+          Miguel
+        </Typography>
+        <Typography
+          tag="h1"
+          size="hero"
+          weight="black"
+          color="accent"
+          class="leading-none block"
+        >
+          Damiron
+        </Typography>
+      </div>
+
+      <Typography tag="p" size="lg" color="muted" class="mb-10 max-w-lg">
+        Bridging the gap between raw data and actionable business intelligence
+        through engineered analytics.
+      </Typography>
+
+      <div class="hero-actions mb-12">
+        <Button variant="primary" size="lg" href="#projects"
+          >View Projects</Button
+        >
+        <Button variant="outline" size="lg" href="#contact">Download CV</Button>
+      </div>
+    </div>
+
+    <div class="hero-image-wrapper">
+      <div class="image-bg-effect"></div>
+      {/* Placeholder image, we'll need to generate or provide one */}
+      <div class="portrait-placeholder">
+        <img
+          src="https://images.unsplash.com/photo-1542458408-5604169c9b13?q=80&w=2692&auto=format&fit=crop"
+          alt="Miguel Damiron"
+          class="portrait-img"
+        />
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <StatItem value="5+" label="Years" label2="PM Experience In Tech" />
+      <StatItem value="6+" label="Years" label2="BI Analytics & Reporting" />
+      <StatItem value="$2B+" label="" label2="Projects Value Milestone" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding-top: calc(
+      var(--space-xl) * 2 + 80px
+    ); /* Account for navbar + extra padding */
+    padding-bottom: var(--space-xl);
+    overflow: hidden;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-content {
+    max-width: 600px;
+    z-index: 10;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: left;
+    z-index: 5;
+  }
+
+  .image-bg-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(
+      circle,
+      var(--color-accent-hover) 0%,
+      transparent 70%
+    );
+    z-index: -1;
+  }
+
+  .portrait-placeholder {
+    width: 400px;
+    height: 500px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    /* Basic styling for placeholder box in case image fails */
+    background: linear-gradient(145deg, var(--color-surface), var(--color-neutral-800));
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--color-neutral-950) 40%, transparent);
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-xl) * 1.5);
+    z-index: 10;
+  }
+
+  /* Utility Spacing */
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  .mb-10 {
+    margin-bottom: 2.5rem;
+  }
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .max-w-lg {
+    max-width: 32rem;
+  }
+  .leading-none {
+    line-height: 1;
+  }
+  .block {
+    display: block;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-content {
+      margin: 0 auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-stats {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .hero-image-wrapper {
+      margin-top: var(--space-xl);
+    }
+  }
+</style>

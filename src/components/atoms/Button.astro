@@ -1,0 +1,142 @@
+---
+/**
+ * Button Component
+ * Returns a styled button or anchor tag based on the 'href' prop.
+ *
+ * @param {string} variant - 'primary' | 'outline' | 'ghost'
+ * @param {string} size - 'sm' | 'md' | 'lg'
+ * @param {string} href - Optional link URI
+ * @param {string} className - Additional CSS classes
+ */
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const Element = href ? "a" : "button";
+
+const baseStyles =
+  "inline-flex items-center justify-center font-semibold transition-all duration-300 rounded-md cursor-pointer border";
+const variants = {
+  primary: "variant-primary",
+  outline: "variant-outline",
+  ghost: "variant-ghost",
+};
+
+const sizes = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+  lg: "px-8 py-4 text-lg",
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className].join(
+  " ",
+);
+---
+
+<Element
+  href={href}
+  class:list={[baseStyles, variants[variant], sizes[size], className]}
+  {...rest}
+>
+  <slot />
+</Element>
+
+<style>
+  /* Custom styles to handle specific behaviors not covered by utility classes */
+  .inline-flex {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .font-semibold {
+    font-weight: 600;
+  }
+
+  .transition-all {
+    transition: all 0.3s ease;
+  }
+
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .border {
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  .px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  .text-base {
+    font-size: 1rem;
+  }
+  .text-lg {
+    font-size: 1.125rem;
+  }
+
+  /* Variant Styles */
+  .variant-primary {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-neutral-0);
+  }
+  .variant-primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+  }
+
+  .variant-outline {
+    background-color: transparent;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .variant-outline:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-neutral-0);
+  }
+
+  .variant-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-text-primary);
+  }
+  .variant-ghost:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-accent);
+  }
+</style>

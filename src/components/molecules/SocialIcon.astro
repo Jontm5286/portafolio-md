@@ -1,0 +1,35 @@
+---
+import Icon from '../atoms/Icon.astro';
+
+/**
+ * SocialIcon Molecule
+ * Linked icon for social media with hover state.
+ * 
+ * @param {string} href - Link to profile
+ * @param {string} ariaLabel - Accessibility description
+ */
+const { href, ariaLabel } = Astro.props;
+---
+
+<a href={href} aria-label={ariaLabel} class="social-link" target="_blank" rel="noopener noreferrer">
+  <Icon size={20}>
+    <slot />
+  </Icon>
+</a>
+
+<style>
+  .social-link {
+    display: inline-flex;
+    padding: 0.5rem;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+  }
+</style>

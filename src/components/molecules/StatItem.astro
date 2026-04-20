@@ -1,0 +1,67 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * StatItem Molecule
+ * Displays a metric with a big number and a label.
+ *
+ * @param {string} value - The numerical value (e.g., '5+')
+ * @param {string} label - The description (e.g., 'Years Experience')
+ */
+const { value, label, label2 } = Astro.props;
+---
+
+<div class="stat-item">
+  <div>
+    <Typography
+      tag="span"
+      size="4xl"
+      weight="black"
+      color="accent"
+      class="stat-value"
+    >
+      {value}
+    </Typography>
+
+    <Typography
+      tag="span"
+      size="lg"
+      weight="medium"
+      color="muted"
+      class="stat-value"
+    >
+      {label}
+    </Typography>
+  </div>
+  <Typography
+    tag="p"
+    size="xs"
+    weight="medium"
+    color="muted"
+    class="stat-label uppercase tracking-widest leading-tight"
+  >
+    {label2}
+  </Typography>
+</div>
+
+<style>
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    line-height: 0.8;
+  }
+
+  .stat-label {
+    opacity: 0.8;
+    max-width: 200px;
+    color: var(--color-text-primary);
+  }
+
+  .leading-tight {
+    line-height: 1.25;
+  }
+</style>

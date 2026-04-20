@@ -1,0 +1,33 @@
+---
+/**
+ * Icon Component
+ * A functional wrapper for inline SVGs or library icons.
+ * 
+ * @param {string} name - Name of the icon (for future extension)
+ * @param {string} size - size in pixels
+ * @param {string} className - Additional CSS classes
+ */
+const { 
+  size = 24, 
+  class: className = '', 
+} = Astro.props;
+---
+
+<div class={`icon-wrapper ${className}`} style={`width: ${size}px; height: ${size}px;`}>
+  <slot />
+</div>
+
+<style>
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .icon-wrapper :global(svg) {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+</style>
