@@ -1,0 +1,140 @@
+---
+import ImpactCard from "../molecules/ImpactCard.astro";
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * ImpactSummary Organism
+ * Displays cumulative impact metrics in a grid.
+ */
+---
+
+<section class="impact-summary section-padding pb-24">
+  <div class="container">
+    <Typography tag="h2" size="3xl" weight="bold" class="mb-12" data-reveal>
+      Cumulative Impact Summary
+    </Typography>
+
+    <div class="impact-grid">
+      <ImpactCard
+        variant="dark"
+        value="30%"
+        label="Efficiency Gain"
+        data-reveal
+        data-reveal-delay="0.1"
+      >
+        <svg
+          slot="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline
+            points="17 6 23 6 23 12"></polyline></svg
+        >
+      </ImpactCard>
+
+      <ImpactCard
+        variant="light"
+        value="$1.2M"
+        label="Cost Optimized"
+        data-reveal
+        data-reveal-delay="0.2"
+      >
+        <svg
+          slot="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ><line x1="12" y1="1" x2="12" y2="23"></line><path
+            d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg
+        >
+      </ImpactCard>
+
+      <ImpactCard
+        variant="accent"
+        value="99.8%"
+        label="Data Accuracy"
+        data-reveal
+        data-reveal-delay="0.3"
+      >
+        <svg
+          slot="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ><circle cx="12" cy="12" r="10"></circle><line
+            x1="22"
+            y1="12"
+            x2="18"
+            y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line
+            x1="12"
+            y1="6"
+            x2="12"
+            y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg
+        >
+      </ImpactCard>
+
+      <ImpactCard
+        variant="muted"
+        value="10+"
+        label="Teams Led"
+        data-reveal
+        data-reveal-delay="0.4"
+      >
+        <svg
+          slot="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
+            cx="9"
+            cy="7"
+            r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
+            d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+        >
+      </ImpactCard>
+    </div>
+  </div>
+</section>
+
+<style>
+  .impact-summary {
+    background-color: var(--color-background);
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  @media (max-width: 1024px) {
+    .impact-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

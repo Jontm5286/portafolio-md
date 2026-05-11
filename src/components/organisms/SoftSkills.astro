@@ -1,0 +1,159 @@
+---
+import Typography from "../atoms/Typography.astro";
+import SoftSkillCard from "../molecules/SoftSkillCard.astro";
+import Icon from "../atoms/Icon.astro";
+
+/**
+ * SoftSkills Organism
+ * Displays strategic soft skills and core philosophy.
+ */
+---
+
+<div class="soft-skills-section">
+  <div class="header-content">
+    <Typography tag="span" size="xs" weight="bold" class="uppercase muted-text">
+      Human Centric
+    </Typography>
+    <Typography tag="h3" size="3xl" weight="bold" class="section-title">
+      Strategic Soft Skills
+    </Typography>
+  </div>
+
+  <div class="skills-grid">
+    <SoftSkillCard
+      title="Data Storytelling"
+      description="Translating complex datasets into compelling business narratives."
+    >
+      <svg
+        slot="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M12 20h9"></path><path
+          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg
+      >
+    </SoftSkillCard>
+
+    <SoftSkillCard
+      title="Stakeholder Mgmt"
+      description="Aligning cross-functional teams with data-driven roadmaps."
+    >
+      <svg
+        slot="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
+          cx="9"
+          cy="7"
+          r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
+          d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+      >
+    </SoftSkillCard>
+
+    <SoftSkillCard
+      title="Process Improvement"
+      description="Lean methodologies applied to data engineering workflows."
+    >
+      <svg
+        slot="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline
+          points="17 6 23 6 23 12"></polyline></svg
+      >
+    </SoftSkillCard>
+
+    <SoftSkillCard
+      title="Leadership"
+      description="Mentoring analysts and architecting BI centers of excellence."
+    >
+      <svg
+        slot="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg
+      >
+    </SoftSkillCard>
+  </div>
+
+  <div class="philosophy-box">
+    <Typography tag="span" size="xs" weight="bold" class="uppercase mb-2 block">
+      Core Philosophy
+    </Typography>
+    <Typography tag="p" size="lg" weight="medium" class="philosophy-text">
+      "Data without context is noise. My goal is to build the architecture that
+      reveals the melody within that noise."
+    </Typography>
+  </div>
+</div>
+
+<style>
+  .soft-skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .section-title {
+    color: var(--color-green-vogue-950);
+    margin-top: 0.5rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .philosophy-box {
+    background-color: var(--color-green-vogue-950);
+    color: var(--color-neutral-0);
+    padding: var(--space-xl);
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy-text {
+    font-style: italic;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .muted-text {
+    color: var(--color-neutral-500);
+    letter-spacing: 0.05em;
+  }
+
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  .block {
+    display: block;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

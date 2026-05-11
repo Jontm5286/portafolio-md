@@ -1,5 +1,5 @@
 ---
-import Typography from '../atoms/Typography.astro';
+import Typography from "../atoms/Typography.astro";
 
 /**
  * AboutContent Organism
@@ -9,23 +9,34 @@ import Typography from '../atoms/Typography.astro';
 
 <section id="about" class="about-section section-padding bg-surface">
   <div class="container about-container">
-    <div class="about-title">
+    <div class="about-title" data-reveal data-reveal-direction="right">
       <Typography tag="h2" size="4xl" weight="black" class="uppercase">
-        Architecting<br/>Clarity.
+        Data <br />
+        <span class="text-accent">Storyteller</span>
       </Typography>
     </div>
-    
-    <div class="about-text">
+
+    <div class="about-text" data-reveal data-reveal-delay="0.2">
       <Typography tag="p" size="lg" weight="medium" class="mb-6">
-        I transform complex data ecosystems into streamlined, visual narratives that drive executive decision-making. With a background rooted in both technical management and deep-dive analytics, I build the bridges that allow businesses to navigate through uncertainty.
-      </Typography>
-      
-      <Typography tag="p" color="muted" class="mb-8">
-        Specializing in the Microsoft Stack and Tableau, my focus is on creating automated, scalable solutions that reduce manual reporting overhead by up to 80%, allowing teams to focus on strategy rather than synthesis.
+        I transform complex data ecosystems into streamlined, visual narratives
+        that drive executive decision-making. With a background rooted in both
+        technical management and deep-dive analytics, I build the bridges that
+        allow businesses to navigate through uncertainty.
       </Typography>
 
-      <a href="#approach" class="read-more-link">
-        <Typography tag="span" size="sm" weight="bold" class="uppercase tracking-wider">
+      <Typography tag="p" color="muted" class="mb-8">
+        Specializing in the Microsoft Stack and Tableau, my focus is on creating
+        automated, scalable solutions that reduce manual reporting overhead by
+        up to 80%, allowing teams to focus on strategy rather than synthesis.
+      </Typography>
+
+      <a href="/about" class="read-more-link">
+        <Typography
+          tag="span"
+          size="sm"
+          weight="bold"
+          class="uppercase tracking-wider"
+        >
           Read More About My Approach →
         </Typography>
       </a>
@@ -36,7 +47,7 @@ import Typography from '../atoms/Typography.astro';
 <style>
   .about-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     gap: calc(var(--space-xl) * 2);
     align-items: start;
   }
@@ -53,9 +64,9 @@ import Typography from '../atoms/Typography.astro';
     position: relative;
     padding-bottom: 4px;
   }
-  
+
   .read-more-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -73,17 +84,25 @@ import Typography from '../atoms/Typography.astro';
     width: 100%;
   }
 
-  .mb-6 { margin-bottom: 1.5rem; }
-  .mb-8 { margin-bottom: 2rem; }
-  .uppercase { text-transform: uppercase; }
-  .tracking-wider { letter-spacing: 0.05em; }
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-wider {
+    letter-spacing: 0.05em;
+  }
 
   @media (max-width: 900px) {
     .about-container {
       grid-template-columns: 1fr;
       gap: var(--space-xl);
     }
-    
+
     .about-title {
       position: static;
     }

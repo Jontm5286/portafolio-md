@@ -1,0 +1,126 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * ProjectDetailHero Organism
+ * Main header for project case studies.
+ */
+interface Props {
+  title: string;
+  summary: string;
+  category: string;
+  tags: string[];
+}
+
+const { title, summary, category, tags } = Astro.props;
+---
+
+<header class="project-detail-hero section-padding">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="category-badge">
+        <Typography tag="span" size="xs" weight="bold" class="uppercase">
+          {category}
+        </Typography>
+      </div>
+      <Typography tag="h1" size="5xl" weight="black" class="project-title mt-4">
+        {title}
+      </Typography>
+      <Typography tag="p" size="lg" color="muted" class="project-summary mt-6">
+        {summary}
+      </Typography>
+    </div>
+
+    <div class="hero-tools">
+      <div class="tools-list">
+        {
+          tags.map((tag) => (
+            <div class="tool-card">
+              <Typography tag="span" size="xs" weight="bold" class="uppercase">
+                {tag}
+              </Typography>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .project-detail-hero {
+    padding-top: 8rem;
+    background-color: var(--color-background);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: flex-start;
+  }
+
+  .category-badge {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-700); /* neutral-700 on neutral-100 = ~5.9:1 WCAG AA */
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .project-title {
+    color: var(--color-green-vogue-950);
+    line-height: 1.1;
+  }
+
+  .project-summary {
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .hero-tools {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    max-width: 300px;
+  }
+
+  .tool-card {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-600);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-neutral-200);
+  }
+
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-tools {
+      justify-content: flex-start;
+    }
+    .tools-list {
+      justify-content: flex-start;
+      max-width: 100%;
+    }
+  }
+</style>

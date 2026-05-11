@@ -17,15 +17,15 @@ const technologies = [
 
 <section id="skills" class="tech-section section-padding">
   <div class="container">
-    <div class="text-center mb-12">
+    <div class="text-center mb-12" data-reveal>
       <Typography tag="h3" size="xs" weight="bold" color="muted" class="uppercase tracking-widest text-center">
         Core Technology Stack
       </Typography>
     </div>
 
     <div class="tech-grid">
-      {technologies.map(tech => (
-        <div class="tech-item">
+      {technologies.map((tech, index) => (
+        <div class="tech-item" data-reveal data-reveal-delay={index * 0.1}>
           <Icon size={40} class="mb-4 tech-icon">
             <svg viewBox="0 0 24 24" set:html={tech.iconPath} />
           </Icon>

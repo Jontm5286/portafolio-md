@@ -1,0 +1,91 @@
+---
+import { getCollection } from "astro:content";
+import Typography from "../atoms/Typography.astro";
+import CertificationCard from "../molecules/CertificationCard.astro";
+
+/**
+ * CertificationsSection Organism
+ * Displays a grid of verified certifications.
+ */
+const certifications = await getCollection("certifications");
+const sortedCerts = certifications.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="certifications-section section-padding">
+  <div class="container">
+    <header class="section-header">
+      <div class="header-left">
+        <Typography tag="span" size="xs" weight="bold" class="uppercase muted-text">
+          Verified Expertise
+        </Typography>
+        <Typography tag="h2" size="4xl" weight="black" class="uppercase mt-2">
+          Certifications
+        </Typography>
+      </div>
+      <div class="header-right">
+        <Typography tag="p" size="sm" color="muted" class="max-w-md">
+          Industry recognized credentials validating proficiency across the Microsoft Data Stack and project management.
+        </Typography>
+      </div>
+    </header>
+
+    <div class="certs-grid">
+      {
+        sortedCerts.map((cert) => (
+          <CertificationCard title={cert.data.title} issuer={cert.data.issuer} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .certifications-section {
+    background-color: var(--color-neutral-100);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    gap: 2rem;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .muted-text {
+    color: var(--color-neutral-500);
+    letter-spacing: 0.05em;
+  }
+
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .max-w-md {
+    max-width: 28rem;
+  }
+
+  @media (max-width: 1024px) {
+    .certs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .certs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

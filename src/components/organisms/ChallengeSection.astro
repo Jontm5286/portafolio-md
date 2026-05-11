@@ -1,0 +1,114 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * ChallengeSection Organism
+ * Describes the project's challenge and key pain points.
+ */
+interface Props {
+  text: string;
+  points: string[];
+}
+
+const { text, points = [] } = Astro.props;
+---
+
+<section class="challenge-section section-padding">
+  <div class="container challenge-grid">
+    <div class="challenge-title-box">
+      <Typography tag="h2" size="3xl" weight="bold" class="challenge-title">
+        The Challenge
+      </Typography>
+      <div class="title-line"></div>
+    </div>
+
+    <div class="challenge-content">
+      <Typography tag="p" size="lg" class="challenge-text mb-10">
+        {text}
+      </Typography>
+
+      <ul class="challenge-points">
+        {
+          points.map((point) => (
+            <li class="point-item">
+              <div class="check-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <Typography tag="p" size="sm" color="muted">
+                {point}
+              </Typography>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+  }
+
+  .challenge-title-box {
+    position: relative;
+  }
+
+  .challenge-title {
+    color: var(--color-green-vogue-950);
+    margin-bottom: 0.5rem;
+  }
+
+  .title-line {
+    width: 40px;
+    height: 3px;
+    background-color: var(--color-accent-warm-mid); /* Decorative line only */
+  }
+
+  .challenge-text {
+    color: var(--color-neutral-800);
+    line-height: 1.6;
+  }
+
+  .challenge-points {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .point-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .check-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent-warm-mid); /* Decorative icon */
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .mb-10 {
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .challenge-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

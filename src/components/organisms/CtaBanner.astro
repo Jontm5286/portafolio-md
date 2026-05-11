@@ -1,28 +1,47 @@
 ---
-import Typography from '../atoms/Typography.astro';
-import Button from '../atoms/Button.astro';
+import Typography from "../atoms/Typography.astro";
+import Button from "../atoms/Button.astro";
 
 /**
  * CtaBanner Organism
- * A wide call-to-action section meant to encourage contact.
+ * A wide call-to-action section placed on a dark background.
+ * All text must explicitly use light colors since the bg is dark.
  */
 ---
 
 <section id="contact" class="cta-section section-padding">
   <div class="container">
-    <div class="cta-card">
-      <div class="cta-content">
-        <Typography tag="h2" size="4xl" weight="bold" class="mb-4">
+    <div class="cta-card" data-reveal data-reveal-direction="down">
+      <!-- Decorative radial glow -->
+      <div class="cta-glow" aria-hidden="true"></div>
+      <!-- Decorative grid lines -->
+      <div class="cta-grid" aria-hidden="true"></div>
+
+      <div class="cta-content" data-reveal data-reveal-delay="0.3">
+        <span class="cta-eyebrow">Let's Work Together</span>
+
+        <Typography tag="h2" size="4xl" weight="bold" class="cta-title mb-4">
           Ready to make your data talk?
         </Typography>
-        
-        <Typography tag="p" size="lg" color="muted" class="mb-8">
-          Let's discuss how customized BI solutions can transform your operational efficiency.
+
+        <Typography tag="p" size="lg" class="cta-subtitle mb-8">
+          Let's discuss how customized BI solutions can transform your
+          operational efficiency.
         </Typography>
 
-        <Button variant="primary" size="lg" href="mailto:contact@migueldamiron.com">
-          Get In Touch
-        </Button>
+        <div class="cta-actions">
+          <Button
+            variant="primary"
+            size="lg"
+            href="mailto:contact@migueldamiron.com"
+            class="cta-btn-primary"
+          >
+            Get In Touch
+          </Button>
+          <a href="/projects" class="cta-btn-secondary">
+            View Projects →
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -34,34 +53,122 @@ import Button from '../atoms/Button.astro';
   }
 
   .cta-card {
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-green-vogue-950));
+    background-color: var(--color-green-vogue-950);
     border-radius: var(--radius-lg);
-    padding: calc(var(--space-xl) * 1.5) var(--space-md);
+    padding: calc(var(--space-xl) * 1.75) var(--space-md);
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 40px color-mix(in srgb, var(--color-neutral-950) 50%, transparent);
+    box-shadow:
+      0 20px 40px color-mix(in srgb, var(--color-neutral-950) 50%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
-  
-  /* Decorative background element */
-  .cta-card::before {
-    content: '';
+
+  /* Radial glow decoration */
+  .cta-glow {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, color-mix(in srgb, var(--color-neutral-0) 3%, transparent) 0%, transparent 60%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--color-green-vogue-500) 12%, transparent) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle dot-grid decoration */
+  .cta-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 0
+    );
+    background-size: 28px 28px;
+    pointer-events: none;
     z-index: 0;
   }
 
   .cta-content {
     position: relative;
     z-index: 10;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
   }
 
-  .mb-4 { margin-bottom: 1rem; }
-  .mb-8 { margin-bottom: 2rem; }
+  /* Eyebrow label — amber accent on dark bg (~5.1:1 WCAG AA) */
+  .cta-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent-warm);
+    margin-bottom: 1rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--color-accent-warm);
+    border-radius: var(--radius-full);
+    opacity: 0.9;
+  }
+
+  /* Title: white on dark background (~14:1 contrast) */
+  .cta-title {
+    color: var(--color-neutral-0) !important;
+    line-height: 1.15;
+  }
+
+  /* Subtitle: neutral-300 on dark background (~9:1 WCAG AAA) */
+  .cta-subtitle {
+    color: var(--color-neutral-300) !important;
+    line-height: 1.6;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Primary button override for dark bg context */
+  .cta-btn-primary {
+    background-color: var(--color-accent-warm) !important;
+    color: var(--color-neutral-0) !important;
+    border-color: var(--color-accent-warm) !important;
+  }
+
+  .cta-btn-primary:hover {
+    background-color: var(--color-on-accent-warm) !important;
+  }
+
+  /* Ghost secondary link */
+  .cta-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-neutral-300); /* ~9:1 on dark bg */
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color var(--transition-fast);
+  }
+
+  .cta-btn-secondary:hover {
+    color: var(--color-neutral-0);
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
 </style>

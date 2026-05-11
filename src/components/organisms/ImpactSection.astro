@@ -1,0 +1,121 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * ImpactSection Organism
+ * Showcases the project's measurable results.
+ */
+interface ImpactItem {
+  label: string;
+  value: string;
+  description: string;
+}
+
+interface Props {
+  items: ImpactItem[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+<section class="impact-section section-padding">
+  <div class="container">
+    <Typography tag="h2" size="3xl" weight="bold" class="impact-title mb-12 text-center">
+      Quantifiable Impact
+    </Typography>
+
+    <div class="impact-grid">
+      {
+        items.map((item) => (
+          <div class="impact-card">
+            <div class="card-header">
+              <Typography tag="span" size="xs" weight="bold" class="uppercase label-text">
+                {item.label}
+              </Typography>
+              <div class="header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="metric-icon">
+                  <path d="M12 20v-8m0 0l-4 4m4-4l4 4M4 20h16" />
+                </svg>
+              </div>
+            </div>
+            <Typography tag="p" size="5xl" weight="black" class="metric-value mt-4">
+              {item.value}
+            </Typography>
+            <Typography tag="p" size="sm" color="muted" class="metric-desc mt-4">
+              {item.description}
+            </Typography>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .impact-section {
+    background-color: var(--color-neutral-100);
+  }
+
+  .impact-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .impact-card {
+    background-color: var(--color-neutral-0);
+    padding: 2.5rem;
+    border-radius: var(--radius-sm);
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .label-text {
+    color: var(--color-accent-warm-text); /* Amber-700 on white: 4.7:1 WCAG AA ✅ */
+    letter-spacing: 0.1em;
+  }
+
+  .header-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-neutral-200);
+  }
+
+  .metric-value {
+    color: var(--color-green-vogue-950);
+    line-height: 1;
+  }
+
+  .metric-desc {
+    line-height: 1.5;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

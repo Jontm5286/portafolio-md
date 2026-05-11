@@ -5,35 +5,38 @@ import NavLink from '../molecules/NavLink.astro';
 import ThemeToggle from '../molecules/ThemeToggle.astro';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Projects", href: "/projects" },
+  { label: "Skills", href: "/skills" },
+  { label: "Blog", href: "/blog" },
 ];
 ---
 
 <header class="navbar">
   <div class="container navbar-container">
     <div class="logo">
-      <a href="/">
-        <Typography tag="span" size="2xl" weight="black" color="accent" class="logo-text">MD</Typography>
+      <a href="/" aria-label="Miguel Damiron Home">
+        <Typography tag="span" size="2xl" weight="black" class="logo-text">
+          MD<span class="text-accent">.</span>
+        </Typography>
       </a>
     </div>
 
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Main Navigation">
       <ul>
         {navItems.map(item => (
-          <NavLink href={item.href} label={item.label} />
+          <li>
+            <NavLink href={item.href} label={item.label} />
+          </li>
         ))}
       </ul>
     </nav>
 
     <div class="nav-actions">
       <ThemeToggle />
-      <Button variant="outline" size="sm" href="#contact">Contact Me</Button>
+      <Button variant="outline" size="sm" href="/contact" class="contact-btn">Contact Me</Button>
     </div>
   </div>
 </header>
@@ -45,9 +48,10 @@ const navItems = [
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: color-mix(in srgb, var(--color-background) 85%, transparent);
-    backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.3s ease;
   }
 
   .navbar-container {
@@ -59,22 +63,34 @@ const navItems = [
 
   .logo a {
     display: block;
+    text-decoration: none;
+  }
+
+  .logo-text {
+    color: var(--color-green-vogue-950);
+  }
+
+  .text-accent {
+    color: var(--color-accent-warm);
   }
 
   .nav-links ul {
     display: flex;
     gap: 2rem;
-  }
-
-  @media (max-width: 900px) {
-    .nav-links {
-      display: none; /* Hide on mobile for now, can add a hamburger menu later */
-    }
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
   }
 </style>

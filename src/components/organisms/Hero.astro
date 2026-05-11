@@ -3,79 +3,162 @@ import Typography from "../atoms/Typography.astro";
 import Badge from "../atoms/Badge.astro";
 import Button from "../atoms/Button.astro";
 import StatItem from "../molecules/StatItem.astro";
+import { Image } from "astro:assets";
+import profileImage from "../../../public/miguel.webp";
 
-// A placeholder for the profile image for now.
-const profileImage = "/images/profile-placeholder.jpg";
+/**
+ * Hero Organism
+ * The main entry point of the portfolio.
+ * Optimized for SEO and performance.
+ */
 ---
 
 <section id="home" class="hero-section section-padding">
   <div class="container hero-container">
     <div class="hero-content">
-      <Badge variant="default" class="mb-6">Senior Data & BI Manager</Badge>
-
+      <Badge variant="default" class="mb-6 animate-hero">
+        Senior Data & BI Manager
+      </Badge>
       <div class="hero-title-group mb-6">
         <Typography
           tag="h1"
           size="hero"
           weight="medium"
           color="accent"
-          class="leading-none block"
+          class="leading-none block animate-hero"
         >
           Miguel
         </Typography>
         <Typography
-          tag="h1"
+          tag="span"
           size="hero"
           weight="black"
           color="accent"
-          class="leading-none block"
+          class="leading-none block animate-hero"
         >
           Damiron
         </Typography>
       </div>
 
-      <Typography tag="p" size="lg" color="muted" class="mb-10 max-w-lg">
+      <Typography
+        tag="p"
+        size="lg"
+        color="muted"
+        class="mb-10 max-w-lg animate-hero"
+      >
         Bridging the gap between raw data and actionable business intelligence
         through engineered analytics.
       </Typography>
 
-      <div class="hero-actions mb-12">
-        <Button variant="primary" size="lg" href="#projects"
-          >View Projects</Button
+      <div class="hero-actions mb-12 animate-hero">
+        <Button variant="primary" size="lg" href="/projects">
+          View Projects
+        </Button>
+        <Button
+          variant="outline"
+          size="lg"
+          href="/public/Miguel Damiron Senior Data & BI Manager Resume 2026.pdf"
         >
-        <Button variant="outline" size="lg" href="#contact">Download CV</Button>
+          Download CV
+        </Button>
       </div>
     </div>
 
-    <div class="hero-image-wrapper">
-      <div class="image-bg-effect"></div>
-      {/* Placeholder image, we'll need to generate or provide one */}
-      <div class="portrait-placeholder">
-        <img src="/miguel.png" alt="Miguel Damiron" class="portrait-img" />
+    <div class="hero-image-wrapper animate-hero-image">
+      <!-- <div class="image-bg-effect"></div> -->
+      <div class="portrait-container">
+        <Image
+          src={profileImage}
+          alt="Miguel Damiron"
+          width={800}
+          height={1000}
+          loading="eager"
+          fetchpriority="high"
+          class="portrait-img"
+        />
       </div>
     </div>
 
     <div class="hero-stats">
-      <StatItem value="5+" label="Years" label2="PM Experience In Tech" />
-      <StatItem value="6+" label="Years" label2="BI Analytics & Reporting" />
-      <StatItem value="$2B+" label="" label2="Projects Value Milestone" />
+      <div class="animate-stat">
+        <StatItem value="5+" label="Years" label2="PM Experience In Tech" />
+      </div>
+      <div class="animate-stat">
+        <StatItem value="6+" label="Years" label2="BI Analytics & Reporting" />
+      </div>
+      <div class="animate-stat">
+        <StatItem value="$2B+" label="" label2="Projects Value Milestone" />
+      </div>
     </div>
   </div>
 </section>
 
+<script>
+  import { gsap } from "gsap";
+
+  /**
+   * Initializes Hero entrance animations
+   */
+  function initHeroAnimations() {
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+        duration: 1,
+      },
+    });
+
+    // 1. Reveal main content elements with a stagger
+    tl.from(".animate-hero", {
+      y: 40,
+      autoAlpha: 0,
+      stagger: 0.15,
+    })
+      // 2. Reveal the image with a subtle scale and fade
+      .from(
+        ".animate-hero-image",
+        {
+          scale: 0.95,
+          autoAlpha: 0,
+          duration: 1.2,
+        },
+        "-=0.8",
+      )
+      // 3. Reveal stats from the right
+      .from(
+        ".animate-stat",
+        {
+          x: 50,
+          autoAlpha: 0,
+          stagger: 0.1,
+          duration: 0.8,
+        },
+        "-=0.6",
+      );
+  }
+
+  // Initialize on page load
+  window.addEventListener("DOMContentLoaded", initHeroAnimations);
+</script>
+
 <style>
+  /* Pre-animation states to avoid FOUC */
+  .animate-hero,
+  .animate-hero-image,
+  .animate-stat {
+    visibility: hidden;
+  }
+
   .hero-section {
     position: relative;
-    padding-top: calc(
-      var(--space-xl) * 2 + 80px
-    ); /* Account for navbar + extra padding */
+    padding-top: calc(var(--space-xl) * 2 + 80px);
     padding-bottom: var(--space-xl);
     overflow: hidden;
+    background-color: var(--color-bg-main);
   }
 
   .hero-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr auto;
     gap: var(--space-xl);
     align-items: center;
     position: relative;
@@ -95,47 +178,48 @@ const profileImage = "/images/profile-placeholder.jpg";
   .hero-image-wrapper {
     position: relative;
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     z-index: 5;
   }
 
   .image-bg-effect {
     position: absolute;
-    opacity: 0.2;
+    opacity: 0.15;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 150%;
-    height: 150%;
+    width: 140%;
+    height: 140%;
     background: radial-gradient(
       circle,
-      var(--color-accent-hover) 0%,
+      var(--color-action-primary) 0%,
       transparent 70%
     );
     z-index: -1;
   }
 
-  .portrait-placeholder {
-    width: 400px;
-    height: 500px;
+  .portrait-container {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4 / 5;
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    /* Basic styling for placeholder box in case image fails */
-    background: linear-gradient(
-      145deg,
-      var(--color-surface),
-      var(--color-neutral-950)
-    );
-    box-shadow: 0 20px 40px
-      color-mix(in srgb, var(--color-neutral-950) 40%, transparent);
+    /* background: var(--color-bg-sunken); */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-border);
   }
 
   .portrait-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.5s ease;
+  }
+
+  .portrait-container:hover .portrait-img {
+    filter: grayscale(0) contrast(1);
   }
 
   .hero-stats {
@@ -149,7 +233,6 @@ const profileImage = "/images/profile-placeholder.jpg";
     z-index: 10;
   }
 
-  /* Utility Spacing */
   .mb-6 {
     margin-bottom: 1.5rem;
   }
@@ -174,28 +257,24 @@ const profileImage = "/images/profile-placeholder.jpg";
       grid-template-columns: 1fr;
       text-align: center;
     }
-
     .hero-content {
       margin: 0 auto;
     }
-
     .hero-actions {
       justify-content: center;
     }
-
+    .hero-image-wrapper {
+      justify-content: center;
+      margin-top: 3rem;
+    }
     .hero-stats {
       position: static;
       transform: none;
       flex-direction: row;
       justify-content: center;
-      gap: var(--space-xl);
-      margin-top: var(--space-xl);
+      gap: 2rem;
+      margin-top: 4rem;
       flex-wrap: wrap;
-      text-align: left;
-    }
-
-    .hero-image-wrapper {
-      margin-top: var(--space-xl);
     }
   }
 </style>

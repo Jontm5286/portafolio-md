@@ -1,0 +1,110 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * LocationSection Organism
+ * Displays a map background with location badge.
+ */
+---
+
+<section class="location-section">
+  <div class="map-overlay"></div>
+  <div class="container location-container">
+    <div class="location-badge">
+      <div class="location-icon">
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          stroke="none"
+          class="pin-icon"
+          ><path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+          ></path></svg
+        >
+      </div>
+      <div class="location-text">
+        <Typography tag="span" weight="bold" size="sm">Based in London, UK</Typography>
+        <Typography tag="span" size="xs" color="muted" class="uppercase tracking-wider">
+          Available for remote global consulting
+        </Typography>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .location-section {
+    position: relative;
+    height: 400px;
+    background-color: var(--color-neutral-200);
+    /* Placeholder for map background - in a real app you'd use a static map image or leaflet */
+    background-image: radial-gradient(circle at 2px 2px, var(--color-neutral-300) 1px, transparent 0);
+    background-size: 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .map-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--color-neutral-0), transparent 20%, transparent 80%, var(--color-neutral-0));
+    pointer-events: none;
+  }
+
+  .location-badge {
+    background-color: var(--color-neutral-0);
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+  }
+
+  .location-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-green-vogue-950);
+    color: var(--color-neutral-0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pin-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .location-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .tracking-wider {
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 480px) {
+    .location-badge {
+      padding: 1.25rem;
+      gap: 1rem;
+    }
+    .location-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

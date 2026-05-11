@@ -1,38 +1,29 @@
 ---
-import Typography from '../atoms/Typography.astro';
-import ProjectCard from './ProjectCard.astro';
+import { getCollection } from "astro:content";
+import Typography from "../atoms/Typography.astro";
+import ProjectCard from "./ProjectCard.astro";
 
 /**
  * FeaturedProjects Organism
- * Grid layout for project cards.
+ * Grid layout for project cards fetched from content collection.
  */
-const projects = [
-  {
-    title: 'Week Over Week Analysis',
-    category: 'Business Intelligence',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
-    featured: false
-  },
-  {
-    title: 'Product Sales Tracking',
-    category: 'Sales Analytics',
-    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop',
-    featured: false
-  },
-  {
-    title: 'Vehicle Fleet Automation',
-    category: 'Operational Efficiency',
-    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2670&auto=format&fit=crop',
-    featured: true
-  }
-];
+const allProjects = await getCollection("projects");
+const projects = allProjects
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3); // Solo mostramos los 3 primeros en la Home
 ---
 
 <section id="projects" class="projects-section section-padding">
   <div class="container">
-    <div class="projects-header mb-12">
+    <div class="projects-header mb-12" data-reveal>
       <div>
-        <Typography tag="span" size="xs" weight="bold" color="accent" class="uppercase tracking-widest">
+        <Typography
+          tag="span"
+          size="xs"
+          weight="bold"
+          color="accent"
+          class="uppercase tracking-widest"
+        >
           Portfolio
         </Typography>
         <Typography tag="h2" size="4xl" weight="black" class="uppercase mt-2">
@@ -40,16 +31,32 @@ const projects = [
         </Typography>
       </div>
       <a href="/projects" class="view-all">
-        <Typography tag="span" size="sm" weight="bold" class="uppercase tracking-wider">
+        <Typography
+          tag="span"
+          size="sm"
+          weight="bold"
+          class="uppercase tracking-wider"
+        >
           View All Works
         </Typography>
       </a>
     </div>
 
     <div class="projects-grid">
-      {projects.map(project => (
-        <ProjectCard {...project} />
-      ))}
+      {
+        projects.map((project, index) => (
+          <ProjectCard
+            title={project.data.title}
+            category={project.data.category}
+            description={project.data.description}
+            imageUrl={project.data.imageUrl}
+            tags={project.data.tags}
+            href={`/projects/${project.id}`}
+            data-reveal
+            data-reveal-delay={index * 0.1}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -87,11 +94,21 @@ const projects = [
     color: var(--color-accent);
   }
 
-  .mb-12 { margin-bottom: 3rem; }
-  .mt-2 { margin-top: 0.5rem; }
-  .uppercase { text-transform: uppercase; }
-  .tracking-widest { letter-spacing: 0.1em; }
-  .tracking-wider { letter-spacing: 0.05em; }
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
+  .tracking-wider {
+    letter-spacing: 0.05em;
+  }
 
   @media (max-width: 768px) {
     .projects-grid {

@@ -1,0 +1,134 @@
+---
+import { getCollection } from "astro:content";
+import TimelineItem from "../molecules/TimelineItem.astro";
+import Typography from "../atoms/Typography.astro";
+
+import ExperienceFilters from "../molecules/ExperienceFilters.astro";
+
+/**
+ * ExperienceTimeline Organism
+ * Orchestrates the display of the professional timeline.
+ */
+const experience = await getCollection("experience");
+const sortedExperience = experience.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="experience-timeline section-padding">
+  <div class="container">
+    <header class="section-header" data-reveal>
+      <div class="header-badge">
+        <Typography
+          tag="span"
+          size="xs"
+          weight="bold"
+          class="uppercase tracking-widest badge-label"
+        >
+          Professional Journey
+        </Typography>
+      </div>
+      <Typography tag="h2" size="5xl" weight="black" class="uppercase mt-2">
+        Experience<span class="text-accent">.</span>
+      </Typography>
+      <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-4">
+        A decade of transforming raw data into strategic assets across
+        Telecommunications and Information Technology sectors.
+      </Typography>
+    </header>
+
+    <div data-reveal data-reveal-delay="0.2">
+      <ExperienceFilters />
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      {
+        sortedExperience.map((item, index) => (
+          <TimelineItem
+            role={item.data.role}
+            company={item.data.company}
+            location={item.data.location}
+            period={`${item.data.startDate} – ${item.data.endDate}`}
+            category={item.data.category}
+            achievements={item.data.achievements}
+            tools={item.data.tools}
+            isEven={index % 2 !== 0}
+            data-reveal
+            data-reveal-direction={index % 2 === 0 ? "right" : "left"}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-timeline {
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-header {
+    margin-bottom: 5rem;
+  }
+
+  .header-badge {
+    background-color: var(--color-green-vogue-950);
+    color: var(--color-neutral-0);
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  /* Force white text inside the dark badge — 14:1 contrast ✅ */
+  .header-badge :global(.badge-label) {
+    color: var(--color-neutral-0) !important;
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-neutral-200);
+    transform: translateX(-50%);
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .max-w-2xl {
+    max-width: 42rem;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-widest {
+    letter-spacing: 0.15em;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 0;
+      transform: none;
+    }
+    .section-header {
+      margin-bottom: 3rem;
+    }
+  }
+</style>

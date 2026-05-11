@@ -7,11 +7,15 @@ import '../styles/global.css';
  * 
  * @param {string} title - Page title
  * @param {string} description - Meta description for SEO
+ * @param {string} image - Social share image
  */
 const { 
   title = 'Miguel Damiron | Senior Data & BI Manager', 
-  description = 'Portfolio of Miguel Damiron, specializing in Data Engineering, BI, and Business Intelligence solutions.' 
+  description = 'Portfolio of Miguel Damiron, specializing in Data Engineering, BI, and Business Intelligence solutions.',
+  image = '/og-image.png' // Default OG image
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://migueldamiron.com');
 ---
 
 <!DOCTYPE html>
@@ -21,12 +25,28 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
     
-    <!-- SEO Tags -->
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
 
-    <!-- Theme initialization script -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Theme initialization script (Blocking to avoid FOUC) -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -45,19 +65,94 @@ const {
       }
     </script>
     
-    <!-- Google Fonts Preconnect -->
+    <!-- Performance: Preconnect to external assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts: Inter and Outfit with swap display for better FCP -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" 
+      rel="stylesheet"
+      media="print" 
+      onload="this.media='all'"
+    >
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    </noscript>
   </head>
   <body>
     <slot />
+
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      /**
+       * Initializes global reveal animations for elements with [data-reveal] attribute
+       */
+      function initGlobalReveals() {
+        const revealElements = document.querySelectorAll("[data-reveal]");
+
+        revealElements.forEach((el) => {
+          // Get animation settings from data attributes or defaults
+          const direction = el.getAttribute("data-reveal-direction") || "up";
+          const delay = parseFloat(el.getAttribute("data-reveal-delay") || "0");
+          const distance = 40;
+
+          let vars = {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+            autoAlpha: 0,
+            duration: 1,
+            delay,
+            ease: "power2.out",
+            x: 0,
+            y: 0,
+          };
+
+          // Adjust starting position based on direction
+          if (direction === "up") vars.y = distance;
+          else if (direction === "down") vars.y = -distance;
+          else if (direction === "left") vars.x = distance;
+          else if (direction === "right") vars.x = -distance;
+
+          gsap.from(el, vars);
+        });
+      }
+
+      // Initialize on load
+      window.addEventListener("DOMContentLoaded", initGlobalReveals);
+    </script>
   </body>
 </html>
 
 <style is:global>
-  /* Page transition or global body tweaks can go here */
+  /* Pre-animation state for reveal elements to avoid FOUC */
+  [data-reveal] {
+    visibility: hidden;
+  }
+
+  /* Ensure layout stability and accessibility */
   :root {
-    /* Ensure layout stability */
     overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  /* Improve focus states for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-warm);
+    outline-offset: 4px;
+  }
+
+  /* Hide scrollbar during transitions if needed */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 </style>

@@ -1,0 +1,127 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * ProcessSection Organism
+ * Displays the steps taken during the project.
+ */
+interface ProcessStep {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  steps: ProcessStep[];
+}
+
+const { steps = [] } = Astro.props;
+---
+
+<section class="process-section section-padding">
+  <div class="container">
+    <Typography tag="h2" size="3xl" weight="bold" class="process-title mb-12">
+      Process & Methodology
+    </Typography>
+
+    <div class="process-grid">
+      {
+        steps.map((step, index) => (
+          <div class={`process-card ${index === 3 ? "highlight" : ""}`}>
+            <div class="step-number">
+              <Typography tag="span" size="xs" weight="bold">
+                0{index + 1}
+              </Typography>
+            </div>
+            <Typography tag="h3" size="lg" weight="bold" class="step-title mt-4">
+              {step.title}
+            </Typography>
+            <Typography tag="p" size="xs" color="muted" class="step-text mt-2">
+              {step.text}
+            </Typography>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-section {
+    background-color: var(--color-neutral-0);
+  }
+
+  .process-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .process-card {
+    background-color: var(--color-neutral-0);
+    padding: 2rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-neutral-100);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease;
+  }
+
+  .process-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-green-vogue-950);
+    color: var(--color-neutral-0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .process-card.highlight {
+    background-color: var(--color-accent-warm-light);
+    border-color: var(--color-accent-warm-mid);
+  }
+
+  .process-card.highlight .step-number {
+    background-color: var(--color-accent-warm);
+    color: var(--color-neutral-0);
+  }
+
+  .step-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .step-text {
+    line-height: 1.5;
+  }
+
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../molecules/BlogCard.astro";
+
+/**
+ * BlogGrid Organism
+ * Fetches and displays blog posts in a grid.
+ */
+const posts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+---
+
+<div class="blog-grid">
+  {
+    sortedPosts.map((post) => (
+      <BlogCard
+        title={post.data.title}
+        description={post.data.description}
+        pubDate={post.data.pubDate}
+        image={post.data.image}
+        tags={post.data.tags}
+        href={`/blog/${post.id}`}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

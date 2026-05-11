@@ -1,0 +1,90 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * PhilosophySection Organism
+ * Impactful brand philosophy banner.
+ */
+---
+
+<section class="philosophy-section">
+  <div class="container philosophy-container">
+    <div class="philosophy-content">
+      <Typography
+        tag="span"
+        size="xs"
+        weight="bold"
+        class="uppercase brand-label mb-6 block"
+      >
+        Brand Philosophy
+      </Typography>
+
+      <Typography tag="blockquote" size="4xl" weight="bold" class="quote-text">
+        "Engineering clarity from chaos. My leadership is rooted in <span
+          class="text-highlight">precision, authority, and the relentless pursuit</span
+        > of data-driven architectural integrity."
+      </Typography>
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy-section {
+    background-color: var(--color-green-vogue-950);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  }
+
+  .philosophy-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-label {
+    color: var(--color-accent-warm); /* Warm amber on dark bg: ~5.1:1 contrast */
+    letter-spacing: 0.2em;
+  }
+
+  .quote-text {
+    color: var(--color-neutral-0);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .text-highlight {
+    color: var(--color-accent-warm);
+  }
+
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  .block {
+    display: block;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .quote-text {
+      font-size: 2rem;
+    }
+  }
+</style>
