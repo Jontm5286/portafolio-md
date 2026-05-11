@@ -1,0 +1,87 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * SkillProgressBar Molecule
+ * Displays a technical skill with a progress bar and level indicator.
+ */
+interface Props {
+  label: string;
+  level: string;
+  percentage: number;
+  description?: string;
+}
+
+const { label, level, percentage, description } = Astro.props;
+---
+
+<div class="skill-progress">
+  <div class="skill-header">
+    <Typography tag="span" size="sm" weight="bold" class="uppercase">
+      {label}
+    </Typography>
+    <div class="level-badge">
+      <Typography tag="span" size="xs" weight="bold">
+        {level}
+      </Typography>
+    </div>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-bar" style={`width: ${percentage}%`}></div>
+  </div>
+
+  {
+    description && (
+      <Typography tag="p" size="xs" color="muted" class="skill-description">
+        {description}
+      </Typography>
+    )
+  }
+</div>
+
+<style>
+  .skill-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .level-badge {
+    background-color: var(--color-accent-light, #fef3c7);
+    color: var(--color-accent-dark, #92400e);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+  }
+
+  .progress-container {
+    height: 6px;
+    background-color: var(--color-neutral-200);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: var(--color-green-vogue-950);
+    border-radius: 3px;
+    transition: width 1s ease-out;
+  }
+
+  .skill-description {
+    line-height: 1.4;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+import Typography from "../atoms/Typography.astro";
+import Icon from "../atoms/Icon.astro";
+
+/**
+ * DirectAccessItem Molecule
+ * A clickable card for direct contact methods.
+ */
+interface Props {
+  label: string;
+  value: string;
+  href: string;
+}
+
+const { label, value, href } = Astro.props;
+---
+
+<a href={href} class="direct-access-item">
+  <div class="item-icon">
+    <Icon size={20}>
+      <slot name="icon" />
+    </Icon>
+  </div>
+  <div class="item-content">
+    <Typography tag="span" size="xs" weight="bold" class="uppercase muted-text">
+      {label}
+    </Typography>
+    <Typography tag="span" size="sm" weight="bold" class="item-value">
+      {value}
+    </Typography>
+  </div>
+  <div class="item-arrow">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><line x1="7" y1="17" x2="17" y2="7"></line><polyline
+        points="7 7 17 7 17 17"></polyline></svg
+    >
+  </div>
+</a>
+
+<style>
+  .direct-access-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--color-neutral-0);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-neutral-100);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .direct-access-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: var(--color-neutral-200);
+  }
+
+  .item-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-neutral-100);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-green-vogue-950);
+  }
+
+  .item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .muted-text {
+    color: var(--color-neutral-500);
+    letter-spacing: 0.05em;
+  }
+
+  .item-value {
+    color: var(--color-green-vogue-950);
+  }
+
+  .item-arrow {
+    width: 20px;
+    height: 20px;
+    color: var(--color-neutral-300);
+    transition: color 0.3s ease;
+  }
+
+  .direct-access-item:hover .item-arrow {
+    color: var(--color-accent);
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+</style>

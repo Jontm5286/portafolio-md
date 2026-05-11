@@ -1,0 +1,88 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * FormField Molecule
+ * A reusable form field with label and input/textarea.
+ */
+interface Props {
+  label: string;
+  placeholder: string;
+  id: string;
+  type?: "text" | "email" | "textarea";
+  required?: boolean;
+}
+
+const { label, placeholder, id, type = "text", required = false } = Astro.props;
+---
+
+<div class="form-field">
+  <label for={id}>
+    <Typography tag="span" size="xs" weight="bold" class="uppercase label-text">
+      {label}
+    </Typography>
+  </label>
+
+  {
+    type === "textarea" ? (
+      <textarea
+        id={id}
+        name={id}
+        placeholder={placeholder}
+        required={required}
+        class="form-input form-textarea"
+      />
+    ) : (
+      <input
+        type={type}
+        id={id}
+        name={id}
+        placeholder={placeholder}
+        required={required}
+        class="form-input"
+      />
+    )
+  }
+</div>
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .label-text {
+    color: var(--color-neutral-600);
+    letter-spacing: 0.05em;
+  }
+
+  .form-input {
+    width: 100%;
+    background-color: var(--color-neutral-100);
+    border: 1px solid transparent;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--color-neutral-900);
+    transition: all 0.3s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    background-color: var(--color-neutral-0);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.1);
+  }
+
+  .form-textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+</style>

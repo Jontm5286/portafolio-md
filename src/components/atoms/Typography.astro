@@ -4,10 +4,10 @@
  * Standardizes headings and text across the site.
  *
  * @param {string} tag - 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span'
- * @param {string} size - 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'hero'
- * @param {string} color - 'primary' | 'muted' | 'accent'
- * @param {string} weight - 'light' | 'normal' | 'medium' | 'semibold' | 'bold'
- * @param {string} className - Additional CSS classes
+ * @param {string} size - 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | 'hero'
+ * @param {string} color - 'primary' | 'muted' | 'accent' | 'secondary' | 'white'
+ * @param {string} weight - 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'black'
+ * @param {string} class - Additional CSS classes
  */
 const {
   tag: Tag = "p",
@@ -26,7 +26,7 @@ const sizes = {
   xl: "text-xl",
   "2xl": "text-2xl",
   "3xl": "text-3xl",
-  "4xl": "text-4xl ",
+  "4xl": "text-4xl",
   hero: "text-hero uppercase tracking-tighter",
 };
 
@@ -35,6 +35,7 @@ const colors = {
   muted: "text-muted",
   accent: "text-accent",
   secondary: "text-secondary",
+  white: "text-white",
 };
 
 const weights = {
@@ -56,24 +57,12 @@ const classes = [sizes[size], colors[color], weights[weight], className].join(
 </Tag>
 
 <style>
-  .text-xs {
-    font-size: 0.75rem;
-  }
-  .text-sm {
-    font-size: 0.875rem;
-  }
-  .text-base {
-    font-size: 1rem;
-  }
-  .text-lg {
-    font-size: 1.125rem;
-  }
-  .text-xl {
-    font-size: 1.25rem;
-  }
-  .text-2xl {
-    font-size: 1.5rem;
-  }
+  .text-xs { font-size: 0.75rem; }
+  .text-sm { font-size: 0.875rem; }
+  .text-base { font-size: 1rem; }
+  .text-lg { font-size: 1.125rem; }
+  .text-xl { font-size: 1.25rem; }
+  .text-2xl { font-size: 1.5rem; }
   .text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -87,46 +76,30 @@ const classes = [sizes[size], colors[color], weights[weight], className].join(
     line-height: 0.9;
   }
 
-  .font-light {
-    font-weight: 300;
-  }
-  .font-normal {
-    font-weight: 400;
-  }
-  .font-medium {
-    font-weight: 500;
-  }
-  .font-semibold {
-    font-weight: 600;
-  }
-  .font-bold {
-    font-weight: 700;
-  }
-  .font-black {
-    font-weight: 900;
-  }
+  .font-light { font-weight: 300; }
+  .font-normal { font-weight: 400; }
+  .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; }
+  .font-bold { font-weight: 700; }
+  .font-black { font-weight: 900; }
 
+  /* Mapped to new Semantic Tokens */
   .text-primary {
     color: var(--color-text-primary);
+  }
+  .text-secondary {
+    color: var(--color-text-secondary);
   }
   .text-muted {
     color: var(--color-text-muted);
   }
   .text-accent {
-    color: var(--color-accent);
+    color: var(--color-action-primary);
   }
-  .text-secondary {
-    color: var(--color-secondary);
-  }
-
-  .shadow-heading {
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  .text-white {
+    color: var(--color-neutral-0);
   }
 
-  .uppercase {
-    text-transform: uppercase;
-  }
-  .tracking-tighter {
-    letter-spacing: -0.05em;
-  }
+  .uppercase { text-transform: uppercase; }
+  .tracking-tighter { letter-spacing: -0.05em; }
 </style>

@@ -1,0 +1,58 @@
+---
+import Typography from "../atoms/Typography.astro";
+import Icon from "../atoms/Icon.astro";
+
+/**
+ * SoftSkillCard Molecule
+ * Displays a soft skill with an icon, title and description.
+ */
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div class="soft-skill-card">
+  <div class="skill-icon">
+    <Icon size={20}>
+      <slot name="icon" />
+    </Icon>
+  </div>
+  <Typography tag="h4" size="sm" weight="bold" class="skill-title">
+    {title}
+  </Typography>
+  <Typography tag="p" size="xs" color="muted" class="skill-description">
+    {description}
+  </Typography>
+</div>
+
+<style>
+  .soft-skill-card {
+    background-color: var(--color-neutral-100);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+
+  .soft-skill-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .skill-icon {
+    color: var(--color-green-vogue-950);
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .skill-description {
+    line-height: 1.5;
+  }
+</style>

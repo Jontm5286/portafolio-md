@@ -1,0 +1,244 @@
+---
+import Typography from "../atoms/Typography.astro";
+import Badge from "../atoms/Badge.astro";
+
+/**
+ * TimelineItem Molecule
+ * Represents a single experience entry in the timeline.
+ */
+interface Props {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  category: string;
+  achievements: string[];
+  tools?: string[];
+  isEven?: boolean;
+}
+
+const {
+  role,
+  company,
+  location,
+  period,
+  category,
+  achievements,
+  tools = [],
+  isEven = false,
+  ...rest
+} = Astro.props;
+---
+
+<div
+  class={`timeline-item ${isEven ? "timeline-item--even" : ""}`}
+  data-category={category.toLowerCase()}
+  {...rest}
+>
+  <div class="timeline-dot"></div>
+  <div class="timeline-date">
+    <Typography tag="span" size="sm" weight="bold" color="accent">
+      {period}
+    </Typography>
+    <Badge variant="outline" class="category-badge">
+      {category}
+    </Badge>
+  </div>
+
+  <div class="timeline-content">
+    <div class="content-card">
+      <header class="card-header">
+        <Typography tag="h3" size="2xl" weight="bold" class="role-title">
+          {role}
+        </Typography>
+        <div class="company-info">
+          <Typography tag="span" weight="bold" color="primary">
+            {company}
+          </Typography>
+          <span class="separator">•</span>
+          <Typography tag="span" color="muted" size="sm">
+            {location}
+          </Typography>
+        </div>
+      </header>
+
+      <ul class="achievements-list">
+        {
+          achievements.map((item) => (
+            <li>
+              <Typography tag="p" size="sm" color="muted">
+                {item}
+              </Typography>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        tools.length > 0 && (
+          <div class="tools-footer mt-6">
+            <div class="tools-grid">
+              {tools.map((tool) => (
+                <span class="tool-tag">{tool}</span>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    gap: var(--space-xl);
+    position: relative;
+    margin-bottom: var(--space-xl);
+  }
+
+  .timeline-dot {
+    grid-column: 2;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    margin-left: -5px;
+    z-index: 2;
+    margin-top: 2rem;
+  }
+
+  .timeline-date {
+    grid-column: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .timeline-content {
+    grid-column: 3;
+  }
+
+  .timeline-item--even .timeline-date {
+    grid-column: 3;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .timeline-item--even .timeline-content {
+    grid-column: 1;
+  }
+
+  .content-card {
+    background-color: var(--color-neutral-0);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .card-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .role-title {
+    color: var(--color-green-vogue-950);
+    margin-bottom: 0.25rem;
+  }
+
+  .company-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .separator {
+    color: var(--color-neutral-300);
+  }
+
+  .achievements-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .achievements-list li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .achievements-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .category-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .tools-footer {
+    border-top: 1px solid var(--color-neutral-100);
+    padding-top: 1rem;
+  }
+
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  /* tool-tag: neutral-700 on neutral-100 → 5.9:1 WCAG AA ✅ */
+  .tool-tag {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-700);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--color-neutral-200);
+  }
+
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item {
+      grid-template-columns: 2px 1fr;
+      gap: var(--space-md);
+    }
+    .timeline-dot {
+      grid-column: 1;
+    }
+    .timeline-date {
+      grid-column: 2;
+      text-align: left;
+      align-items: flex-start;
+      padding-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-content {
+      grid-column: 2;
+    }
+    .timeline-item--even .timeline-date,
+    .timeline-item--even .timeline-content {
+      grid-column: 2;
+    }
+  }
+</style>

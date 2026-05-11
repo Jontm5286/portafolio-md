@@ -1,0 +1,109 @@
+---
+import Typography from "../atoms/Typography.astro";
+
+/**
+ * CertificationCard Molecule
+ * Displays a professional certification with verified status.
+ */
+interface Props {
+  title: string;
+  issuer: string;
+}
+
+const { title, issuer } = Astro.props;
+---
+
+<div class="cert-card">
+  <div class="cert-header">
+    <div class="cert-marker" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="marker-icon"
+        ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline
+          points="22 4 12 14.01 9 11.01"></polyline></svg
+      >
+    </div>
+    <div class="cert-status">Verified</div>
+  </div>
+  
+  <div class="cert-content">
+    <Typography tag="span" size="xs" weight="bold" class="cert-issuer uppercase">
+      {issuer}
+    </Typography>
+    <Typography tag="h4" size="sm" weight="bold" class="cert-title">
+      {title}
+    </Typography>
+  </div>
+</div>
+
+<style>
+  .cert-card {
+    background-color: var(--color-neutral-0);
+    padding: var(--space-lg);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--color-neutral-100);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+  }
+
+  .cert-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    border-color: var(--color-accent-warm-mid);
+  }
+
+  .cert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cert-marker {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-accent-warm-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-warm);
+  }
+
+  .marker-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cert-status {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-neutral-400);
+    letter-spacing: 0.1em;
+  }
+
+  .cert-issuer {
+    color: var(--color-accent-warm-text); /* Using the safe amber token (4.7:1 contrast) */
+    display: block;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.08em;
+  }
+
+  .cert-title {
+    color: var(--color-green-vogue-950);
+    line-height: 1.5;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+</style>
