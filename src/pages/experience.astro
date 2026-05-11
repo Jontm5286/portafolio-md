@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/organisms/Navbar.astro";
+import ExperienceTimeline from "../components/organisms/ExperienceTimeline.astro";
+import ImpactSummary from "../components/organisms/ImpactSummary.astro";
+import Footer from "../components/organisms/Footer.astro";
+
+/**
+ * Experience Page
+ * Displays the professional timeline and impact metrics.
+ */
+---
+
+<BaseLayout
+  title="Experience | Miguel Damiron"
+  description="Explore the professional journey of Miguel Damiron, a Senior Data & BI Manager specializing in architectural data blueprints and strategic leadership."
+>
+  <Navbar />
+
+  <main class="experience-page">
+    <ExperienceTimeline />
+    <ImpactSummary />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .experience-page {
+    padding-top: 5rem; /* Space for fixed navbar */
+  }
+
+  @media (max-width: 768px) {
+    .experience-page {
+      padding-top: 4rem;
+    }
+  }
+</style>

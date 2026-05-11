@@ -1,0 +1,196 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/organisms/Navbar.astro";
+import Footer from "../../components/organisms/Footer.astro";
+import Typography from "../../components/atoms/Typography.astro";
+import ProjectCard from "../../components/organisms/ProjectCard.astro";
+import ProjectFilters from "../../components/molecules/ProjectFilters.astro";
+import Button from "../../components/atoms/Button.astro";
+
+/**
+ * Projects Index Page
+ * Displays a grid of all projects from the content collection.
+ */
+const allProjects = await getCollection("projects");
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projects | Miguel Damiron"
+  description="Explore the full portfolio of Miguel Damiron, featuring data-driven solutions and BI projects."
+>
+  <Navbar />
+
+  <main class="projects-page">
+    <header class="page-header section-padding">
+      <div class="container">
+        <Typography
+          tag="span"
+          size="xs"
+          weight="bold"
+          class="uppercase tracking-widest muted-text"
+        >
+          Portfolio
+        </Typography>
+        <Typography tag="h1" size="5xl" weight="black" class="uppercase mt-2 main-title">
+          Strategic Data<br />Architecture<span class="text-accent">.</span>
+        </Typography>
+        <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-6">
+          An curated gallery of business intelligence solutions and analytical
+          models designed to drive operational efficiency and data transparency.
+        </Typography>
+
+        <div class="mt-12">
+          <ProjectFilters />
+        </div>
+      </div>
+    </header>
+
+    <section class="projects-list pb-24">
+      <div class="container">
+        <div class="projects-grid">
+          {
+            projects.map((project) => (
+              <ProjectCard
+                title={project.data.title}
+                category={project.data.category}
+                description={project.data.summary}
+                imageUrl={project.data.imageUrl}
+                tags={project.data.tags}
+                href={`/projects/${project.id}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="projects-cta section-padding">
+      <div class="container">
+        <div class="cta-card">
+          <Typography tag="h2" size="4xl" weight="bold" class="mb-4">
+            Ready to transform your data?
+          </Typography>
+          <Typography tag="p" size="lg" color="muted" class="mb-10 max-w-xl mx-auto">
+            Let's collaborate on building the next generation of your business
+            intelligence infrastructure.
+          </Typography>
+          <Button variant="secondary" size="lg" href="/contact" class="orange-btn">
+            Get in Touch
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .projects-page {
+    background-color: var(--color-background);
+    padding-top: 5rem;
+  }
+
+  .main-title {
+    color: var(--color-green-vogue-950);
+    line-height: 1.1;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .muted-text {
+    color: var(--color-neutral-500);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+  }
+
+  .cta-card {
+    background-color: var(--color-green-vogue-950);
+    color: var(--color-neutral-0);
+    padding: 6rem 2rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+  }
+
+  .orange-btn {
+    background-color: var(--color-accent-warm);
+    color: var(--color-neutral-0); /* White on amber-600 = ~4.5:1 WCAG AA */
+    border: none;
+    font-weight: 800;
+  }
+
+  .orange-btn:hover {
+    background-color: var(--color-on-accent-warm);
+    color: var(--color-neutral-0);
+  }
+
+  .max-w-2xl {
+    max-width: 42rem;
+  }
+  .max-w-xl {
+    max-width: 36rem;
+  }
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  .mt-12 {
+    margin-top: 3rem;
+  }
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  .mb-10 {
+    margin-bottom: 2.5rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
+  .pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .projects-page {
+      padding-top: 4rem;
+    }
+    .main-title {
+      font-size: 3rem;
+    }
+  }
+</style>

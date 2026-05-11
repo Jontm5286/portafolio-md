@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/organisms/Navbar.astro";
+import BlogGrid from "../../components/organisms/BlogGrid.astro";
+import Footer from "../../components/organisms/Footer.astro";
+import Typography from "../../components/atoms/Typography.astro";
+
+/**
+ * Blog Index Page
+ * Shows all blog posts.
+ */
+---
+
+<BaseLayout
+  title="Blog | Miguel Damiron"
+  description="Strategic insights on data architecture, BI leadership, and the precision-first methodology by Miguel Damiron."
+>
+  <Navbar />
+
+  <main class="blog-page">
+    <header class="page-header section-padding">
+      <div class="container">
+        <Typography
+          tag="span"
+          size="xs"
+          weight="bold"
+          class="uppercase tracking-widest muted-text"
+        >
+          Insights & Strategy
+        </Typography>
+        <Typography tag="h1" size="5xl" weight="black" class="uppercase mt-2 main-title">
+          The Blog<span class="text-accent">.</span>
+        </Typography>
+        <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-6">
+          Exploring the intersection of data engineering precision and strategic
+          executive leadership.
+        </Typography>
+      </div>
+    </header>
+
+    <section class="blog-list pb-24">
+      <div class="container">
+        <BlogGrid />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .blog-page {
+    background-color: var(--color-background);
+    padding-top: 5rem;
+  }
+
+  .main-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .muted-text {
+    color: var(--color-neutral-500);
+  }
+
+  .max-w-2xl {
+    max-width: 42rem;
+  }
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
+  .pb-24 {
+    padding-bottom: 6rem;
+  }
+
+  @media (max-width: 768px) {
+    .blog-page {
+      padding-top: 4rem;
+    }
+  }
+</style>

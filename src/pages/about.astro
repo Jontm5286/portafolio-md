@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/organisms/Navbar.astro";
+import AboutHero from "../components/organisms/AboutHero.astro";
+import PhilosophySection from "../components/organisms/PhilosophySection.astro";
+import EducationSection from "../components/organisms/EducationSection.astro";
+import ExpertiseShowcase from "../components/organisms/ExpertiseShowcase.astro";
+import Footer from "../components/organisms/Footer.astro";
+
+/**
+ * About Page
+ * Detailed professional profile and background.
+ */
+---
+
+<BaseLayout
+  title="About | Miguel Damiron"
+  description="Discover the professional background, brand philosophy, and academic foundation of Miguel Damiron, The Analytical Architect."
+>
+  <Navbar />
+
+  <main class="about-page">
+    <AboutHero />
+    <PhilosophySection />
+    <EducationSection />
+    <ExpertiseShowcase />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about-page {
+    /* Base styles for the about page if needed */
+  }
+</style>

@@ -1,0 +1,164 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/organisms/Navbar.astro";
+import Footer from "../../components/organisms/Footer.astro";
+import Typography from "../../components/atoms/Typography.astro";
+
+/**
+ * Blog Post Detail Page
+ * Dynamically rendered from the blog content collection.
+ */
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={`${post.data.title} | Miguel Damiron`} description={post.data.description}>
+  <Navbar />
+
+  <article class="post-page">
+    <header class="post-header section-padding">
+      <div class="container">
+        <div class="post-meta mb-6">
+          <Typography tag="span" size="sm" weight="bold" color="accent">
+            {formattedDate}
+          </Typography>
+          <span class="separator">•</span>
+          <div class="post-tags">
+            {post.data.tags.map((tag) => (
+              <span class="tag-badge">{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        <Typography tag="h1" size="5xl" weight="black" class="post-title uppercase">
+          {post.data.title}
+        </Typography>
+
+        {post.data.image && (
+          <div class="post-hero-image mt-12">
+            <img src={post.data.image} alt={post.data.title} />
+          </div>
+        )}
+      </div>
+    </header>
+
+    <section class="post-content pb-24">
+      <div class="container container--narrow">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .post-page {
+    padding-top: 5rem;
+  }
+
+  .container--narrow {
+    max-width: 800px;
+  }
+
+  .post-title {
+    color: var(--color-green-vogue-950);
+    line-height: 1.1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .separator {
+    color: var(--color-neutral-300);
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+    letter-spacing: 0.05em;
+  }
+
+  .post-hero-image {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .post-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Basic Prose Styles */
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-neutral-800);
+  }
+
+  .prose :global(h2) {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-green-vogue-950);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .prose :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose :global(ul) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .mb-6 { margin-bottom: 1.5rem; }
+  .mt-12 { margin-top: 3rem; }
+  .pb-24 { padding-bottom: 6rem; }
+  .uppercase { text-transform: uppercase; }
+
+  @media (max-width: 768px) {
+    .post-page {
+      padding-top: 4rem;
+    }
+    .post-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

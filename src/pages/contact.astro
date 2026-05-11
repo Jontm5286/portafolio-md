@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/organisms/Navbar.astro";
+import ContactForm from "../components/organisms/ContactForm.astro";
+import ContactSidebar from "../components/organisms/ContactSidebar.astro";
+import LocationSection from "../components/organisms/LocationSection.astro";
+import Footer from "../components/organisms/Footer.astro";
+import Typography from "../components/atoms/Typography.astro";
+
+/**
+ * Contact Page
+ * Main contact hub with form, direct links and location info.
+ */
+---
+
+<BaseLayout
+  title="Contact | Miguel Damiron"
+  description="Have a complex data challenge? Get in touch with Miguel Damiron to build something authoritative together."
+>
+  <Navbar />
+
+  <main class="contact-page">
+    <header class="page-header section-padding">
+      <div class="container">
+        <Typography tag="h1" size="5xl" weight="black" class="uppercase main-title">
+          Let’s Connect<span class="text-accent">.</span>
+        </Typography>
+        <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-6">
+          Have a complex data challenge or a BI architecture to discuss? Reach out and let's build something authoritative together.
+        </Typography>
+      </div>
+    </header>
+
+    <section class="contact-content pb-24">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="form-side">
+            <ContactForm />
+          </div>
+          <div class="sidebar-side">
+            <ContactSidebar />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LocationSection />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-top: 5rem;
+  }
+
+  .main-title {
+    color: var(--color-green-vogue-950);
+  }
+
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+  .pb-24 {
+    padding-bottom: 6rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-page {
+      padding-top: 4rem;
+    }
+  }
+</style>
