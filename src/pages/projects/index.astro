@@ -6,12 +6,8 @@ import Footer from "@/components/organisms/Footer.astro";
 import Typography from "@/components/atoms/Typography.astro";
 import ProjectCard from "@/components/organisms/ProjectCard.astro";
 import ProjectFilters from "@/components/molecules/ProjectFilters.astro";
-import Button from "@/components/atoms/Button.astro";
+import CtaBanner from "@/components/organisms/CtaBanner.astro";
 
-/**
- * Projects Index Page
- * Displays a grid of all projects from the content collection.
- */
 const allProjects = await getCollection("projects");
 const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
@@ -22,23 +18,18 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
 >
   <Navbar />
 
-  <main class="projects-page">
+   <main class="projects-page" id="main-content">
     <header class="page-header section-padding">
       <div class="container">
-        <Typography
-          tag="span"
-          size="xs"
-          weight="bold"
-          class="uppercase tracking-widest muted-text"
-        >
+        <Typography tag="span" size="xs" weight="bold" class="uppercase tracking-widest muted-text">
           Portfolio
         </Typography>
         <Typography tag="h1" size="5xl" weight="black" class="uppercase mt-2 main-title">
           Strategic Data<br />Architecture<span class="text-accent">.</span>
         </Typography>
         <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-6">
-          An curated gallery of business intelligence solutions and analytical
-          models designed to drive operational efficiency and data transparency.
+          An curated gallery of business intelligence solutions and analytical models designed to
+          drive operational efficiency and data transparency.
         </Typography>
 
         <div class="mt-12">
@@ -66,22 +57,7 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
       </div>
     </section>
 
-    <section class="projects-cta section-padding">
-      <div class="container">
-        <div class="cta-card">
-          <Typography tag="h2" size="4xl" weight="bold" class="mb-4">
-            Ready to transform your data?
-          </Typography>
-          <Typography tag="p" size="lg" color="muted" class="mb-10 max-w-xl mx-auto">
-            Let's collaborate on building the next generation of your business
-            intelligence infrastructure.
-          </Typography>
-          <Button variant="secondary" size="lg" href="/contact" class="orange-btn">
-            Get in Touch
-          </Button>
-        </div>
-      </div>
-    </section>
+    <CtaBanner />
   </main>
 
   <Footer />
@@ -94,7 +70,7 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
   }
 
   .main-title {
-    color: var(--color-green-vogue-950);
+    color: var(--color-text-primary);
     line-height: 1.1;
   }
 
@@ -126,7 +102,7 @@ const projects = allProjects.sort((a, b) => a.data.order - b.data.order);
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
   }
 
   .orange-btn {

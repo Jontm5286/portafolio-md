@@ -1,39 +1,66 @@
 ---
-import Typography from '@/components/atoms/Typography.astro';
-import Icon from '@/components/atoms/Icon.astro';
+import Typography from "@/components/atoms/Typography.astro";
+import Icon from "@/components/atoms/Icon.astro";
 
 /**
  * TechGrid Organism
  * Displays a list of core technologies with icons and labels.
  */
 const technologies = [
-  { name: 'Tableau', iconPath: '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 6v12m-6-6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' },
-  { name: 'Power BI', iconPath: '<path d="M4 14h4v6H4zm6-6h4v12h-4zm6-4h4v16h-4z" fill="currentColor"/>' },
-  { name: 'Azure', iconPath: '<path d="M4 16l4-10 4 10H4zm12 0l-2-5-2 5h4zM12 2l4 10H8l4-10z" fill="currentColor"/>' },
-  { name: 'SQL', iconPath: '<ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="currentColor" stroke-width="2" fill="none"/>' },
-  { name: 'Power Automate', iconPath: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" fill="none"/>' },
+  {
+    name: "Tableau",
+    iconPath:
+      '<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 6v12m-6-6h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  },
+  {
+    name: "Power BI",
+    iconPath: '<path d="M4 14h4v6H4zm6-6h4v12h-4zm6-4h4v16h-4z" fill="currentColor"/>',
+  },
+  {
+    name: "Azure",
+    iconPath:
+      '<path d="M4 16l4-10 4 10H4zm12 0l-2-5-2 5h4zM12 2l4 10H8l4-10z" fill="currentColor"/>',
+  },
+  {
+    name: "SQL",
+    iconPath:
+      '<ellipse cx="12" cy="6" rx="8" ry="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="currentColor" stroke-width="2" fill="none"/>',
+  },
+  {
+    name: "Power Automate",
+    iconPath:
+      '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" fill="none"/>',
+  },
 ];
 ---
 
 <section id="skills" class="tech-section section-padding">
   <div class="container">
     <div class="text-center mb-12" data-reveal>
-      <Typography tag="h3" size="xs" weight="bold" color="muted" class="uppercase tracking-widest text-center">
+      <Typography
+        tag="h3"
+        size="xs"
+        weight="bold"
+        color="muted"
+        class="uppercase tracking-widest text-center"
+      >
         Core Technology Stack
       </Typography>
     </div>
 
     <div class="tech-grid">
-      {technologies.map((tech, index) => (
-        <div class="tech-item" data-reveal data-reveal-delay={index * 0.1}>
-          <Icon size={40} class="mb-4 tech-icon">
-            <svg viewBox="0 0 24 24" set:html={tech.iconPath} />
-          </Icon>
-          <Typography tag="span" size="sm" color="muted" class="tech-name">
-            {tech.name}
-          </Typography>
-        </div>
-      ))}
+      {
+        technologies.map((tech, index) => (
+          <div class="tech-item" data-reveal data-reveal-delay={index * 0.1}>
+            <Icon size={40} class="mb-4 tech-icon">
+              <svg viewBox="0 0 24 24" set:html={tech.iconPath} />
+            </Icon>
+            <Typography tag="span" size="sm" color="muted" class="tech-name">
+              {tech.name}
+            </Typography>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -75,12 +102,20 @@ const technologies = [
     color: var(--color-accent);
   }
 
-  .mb-12 { margin-bottom: 3rem; }
-  .mb-4 { margin-bottom: 1rem; }
-  .uppercase { text-transform: uppercase; }
-  .tracking-widest { letter-spacing: 0.1em; }
+  .mb-12 {
+    margin-bottom: 3rem;
+  }
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .tech-grid {
       gap: var(--space-xl);
     }

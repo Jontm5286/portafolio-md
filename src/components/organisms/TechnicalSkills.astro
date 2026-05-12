@@ -14,7 +14,9 @@ import Badge from "@/components/atoms/Badge.astro";
     <div class="card-header">
       <div class="eyebrow">
         <div class="dot"></div>
-        <Typography tag="span" size="xs" weight="bold" class="uppercase">Technical Ecosystem</Typography>
+        <Typography tag="span" size="xs" weight="bold" class="uppercase"
+          >Technical Ecosystem</Typography
+        >
       </div>
       <Typography tag="h3" size="3xl" weight="bold" class="section-title">
         The Precision Stack<span class="text-accent">.</span>
@@ -25,51 +27,84 @@ import Badge from "@/components/atoms/Badge.astro";
       <!-- Power BI -->
       <div class="stack-item">
         <div class="stack-icon-bg pbi">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="stack-icon"><path d="M11 20H7V10H11V20ZM17 20H13V4H17V20ZM23 20H19V14H23V20Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="stack-icon"
+            ><path d="M11 20H7V10H11V20ZM17 20H13V4H17V20ZM23 20H19V14H23V20Z"></path></svg
+          >
         </div>
         <div class="stack-info">
           <Typography tag="h4" size="md" weight="bold">Power BI & DAX</Typography>
-          <Typography tag="p" size="xs" color="muted">Expert: Advanced modeling, RLS & paginated reports.</Typography>
+          <Typography tag="p" size="xs" color="muted"
+            >Expert: Advanced modeling, RLS & paginated reports.</Typography
+          >
         </div>
       </div>
 
       <!-- SQL -->
       <div class="stack-item">
         <div class="stack-icon-bg sql">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stack-icon"><path d="M12 3c-4.97 0-9 1.57-9 3.5S7.03 10 12 10s9-1.57 9-3.5S16.97 3 12 3z"/><path d="M21 6.5v7c0 1.93-4.03 3.5-9 3.5S3 15.43 3 13.5v-7"/><path d="M21 13.5v7c0 1.93-4.03 3.5-9 3.5S3 22.43 3 20.5v-7"/></svg>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="stack-icon"
+            ><path d="M12 3c-4.97 0-9 1.57-9 3.5S7.03 10 12 10s9-1.57 9-3.5S16.97 3 12 3z"
+            ></path><path d="M21 6.5v7c0 1.93-4.03 3.5-9 3.5S3 15.43 3 13.5v-7"></path><path
+              d="M21 13.5v7c0 1.93-4.03 3.5-9 3.5S3 22.43 3 20.5v-7"></path></svg
+          >
         </div>
         <div class="stack-info">
           <Typography tag="h4" size="md" weight="bold">SQL Server / T-SQL</Typography>
-          <Typography tag="p" size="xs" color="muted">Advanced: Query optimization & stored procedures.</Typography>
+          <Typography tag="p" size="xs" color="muted"
+            >Advanced: Query optimization & stored procedures.</Typography
+          >
         </div>
       </div>
 
       <!-- Azure -->
       <div class="stack-item">
         <div class="stack-icon-bg azure">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="stack-icon"><path d="M17.5 19c.7-1.2 1.5-2.5 1.5-4a7 7 0 1 0-14 0c0 1.5.8 2.8 1.5 4"/><path d="M12 11V3"/></svg>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="stack-icon"
+            ><path d="M17.5 19c.7-1.2 1.5-2.5 1.5-4a7 7 0 1 0-14 0c0 1.5.8 2.8 1.5 4"></path><path
+              d="M12 11V3"></path></svg
+          >
         </div>
         <div class="stack-info">
           <Typography tag="h4" size="md" weight="bold">Azure Cloud</Typography>
-          <Typography tag="p" size="xs" color="muted">Architecture: Data Factory, Synapse & Data Lake.</Typography>
+          <Typography tag="p" size="xs" color="muted"
+            >Architecture: Data Factory, Synapse & Data Lake.</Typography
+          >
         </div>
       </div>
 
       <!-- Python -->
       <div class="stack-item">
         <div class="stack-icon-bg python">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="stack-icon"><path d="M12 1.99c-2.43 0-4.32.18-5.63.49C4.6 2.89 4.31 3.5 4.31 4.31v1.64c0 .54.43.99.98.99h6.14v.55H6.29c-.83 0-1.5.67-1.5 1.5v3.28c0 .83.67 1.5 1.5 1.5h1.64c.55 0 .99-.44.99-.98V9.11c0-.54.43-.99.98-.99h4.11c.82 0 1.5-.67 1.5-1.5V3.34c0-.83-.67-1.5-1.5-1.5h-2.51c-.13-.53-.61-.92-1.18-.92s-1.05.39-1.18.92H12l-.01.14zm0 2c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75zM12 22.01c2.43 0 4.32-.18 5.63-.49 1.77-.41 2.06-1.02 2.06-1.83v-1.64c0-.54-.43-.99-.98-.99h-6.14v-.55h5.14c.83 0 1.5-.67 1.5-1.5v-3.28c0-.83-.67-1.5-1.5-1.5h-1.64c-.55 0-.99.44-.99.98v3.68c0 .54-.43.99-.98.99H10.1c-.83 0-1.5.67-1.5 1.5v3.28c0 .83.67 1.5 1.5 1.5h2.51c.13.53.61.92 1.18.92s1.05-.39 1.18-.92H12l.01-.14zm0-2c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" class="stack-icon"
+            ><path
+              d="M12 1.99c-2.43 0-4.32.18-5.63.49C4.6 2.89 4.31 3.5 4.31 4.31v1.64c0 .54.43.99.98.99h6.14v.55H6.29c-.83 0-1.5.67-1.5 1.5v3.28c0 .83.67 1.5 1.5 1.5h1.64c.55 0 .99-.44.99-.98V9.11c0-.54.43-.99.98-.99h4.11c.82 0 1.5-.67 1.5-1.5V3.34c0-.83-.67-1.5-1.5-1.5h-2.51c-.13-.53-.61-.92-1.18-.92s-1.05.39-1.18.92H12l-.01.14zm0 2c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75zM12 22.01c2.43 0 4.32-.18 5.63-.49 1.77-.41 2.06-1.02 2.06-1.83v-1.64c0-.54-.43-.99-.98-.99h-6.14v-.55h5.14c.83 0 1.5-.67 1.5-1.5v-3.28c0-.83-.67-1.5-1.5-1.5h-1.64c-.55 0-.99.44-.99.98v3.68c0 .54-.43.99-.98.99H10.1c-.83 0-1.5.67-1.5 1.5v3.28c0 .83.67 1.5 1.5 1.5h2.51c.13.53.61.92 1.18.92s1.05-.39 1.18-.92H12l.01-.14zm0-2c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"
+            ></path></svg
+          >
         </div>
         <div class="stack-info">
           <Typography tag="h4" size="md" weight="bold">Python & Pandas</Typography>
-          <Typography tag="p" size="xs" color="muted">Scripting: ETL automation & statistical analysis.</Typography>
+          <Typography tag="p" size="xs" color="muted"
+            >Scripting: ETL automation & statistical analysis.</Typography
+          >
         </div>
       </div>
     </div>
 
     <div class="complementary-stack">
       <div class="sub-section">
-        <Typography tag="span" size="xs" weight="bold" class="uppercase block mb-4">Infrastructure</Typography>
+        <Typography tag="span" size="xs" weight="bold" class="uppercase block mb-4"
+          >Infrastructure</Typography
+        >
         <div class="badge-group">
           <Badge variant="outline">SharePoint Admin</Badge>
           <Badge variant="outline">Power Automate</Badge>
@@ -79,7 +114,9 @@ import Badge from "@/components/atoms/Badge.astro";
       </div>
 
       <div class="sub-section">
-        <Typography tag="span" size="xs" weight="bold" class="uppercase block mb-4">Methodologies</Typography>
+        <Typography tag="span" size="xs" weight="bold" class="uppercase block mb-4"
+          >Methodologies</Typography
+        >
         <div class="badge-group">
           <Badge variant="outline">Scrum Master</Badge>
           <Badge variant="outline">Agile BI</Badge>
@@ -96,45 +133,45 @@ import Badge from "@/components/atoms/Badge.astro";
     width: 100%;
   }
 
-  .card-box {
-    background-color: var(--color-neutral-0);
-    padding: var(--space-xl);
-    border-radius: var(--radius-md);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--color-neutral-100);
-    position: relative;
-    overflow: hidden;
-  }
+   .card-box {
+     background-color: var(--color-bg-card);
+     padding: var(--space-xl);
+     border-radius: var(--radius-md);
+     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+     border: 1px solid var(--color-border);
+     position: relative;
+     overflow: hidden;
+   }
 
-  .card-box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: var(--color-green-vogue-950);
-  }
+   .card-box::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 4px;
+     height: 100%;
+     background-color: var(--color-accent);
+   }
 
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--color-neutral-500);
-    margin-bottom: 0.5rem;
-  }
+   .eyebrow {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     color: var(--color-text-muted);
+     margin-bottom: 0.5rem;
+   }
 
-  .dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--color-accent-warm);
-    border-radius: 50%;
-  }
+   .dot {
+     width: 6px;
+     height: 6px;
+     background-color: var(--color-accent-warm);
+     border-radius: 50%;
+   }
 
-  .section-title {
-    color: var(--color-green-vogue-950);
-    margin-bottom: 3rem;
-  }
+   .section-title {
+     color: var(--color-text-primary);
+     margin-bottom: 3rem;
+   }
 
   .text-accent {
     color: var(--color-accent-warm);
@@ -173,24 +210,36 @@ import Badge from "@/components/atoms/Badge.astro";
     height: 24px;
   }
 
-  /* Tech-specific icon colors */
-  .pbi { background-color: #fef3c7; color: #d97706; }
-  .sql { background-color: #e0f2fe; color: #0369a1; }
-  .azure { background-color: #dbeafe; color: #1d4ed8; }
-  .python { background-color: #f1f5f9; color: #334155; }
+   /* Tech-specific icon colors */
+   .pbi {
+     background-color: var(--color-accent-warm-soft);
+     color: var(--color-accent-warm-text);
+   }
+   .sql {
+     background-color: var(--color-bg-sunken);
+     color: var(--color-accent);
+   }
+   .azure {
+     background-color: var(--color-bg-sunken);
+     color: var(--color-accent);
+   }
+   .python {
+     background-color: var(--color-bg-sunken);
+     color: var(--color-text-primary);
+   }
 
-  .stack-info h4 {
-    color: var(--color-green-vogue-950);
-    margin-bottom: 0.25rem;
-  }
+   .stack-info h4 {
+     color: var(--color-text-primary);
+     margin-bottom: 0.25rem;
+   }
 
-  .complementary-stack {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-neutral-100);
-  }
+   .complementary-stack {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 3rem;
+     padding-top: 2rem;
+     border-top: 1px solid var(--color-border);
+   }
 
   .badge-group {
     display: flex;

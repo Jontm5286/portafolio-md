@@ -1,26 +1,30 @@
 ---
-/**
- * Button Component
- * Returns a styled button or anchor tag based on the 'href' prop.
- *
- * @param {string} variant - 'primary' | 'outline' | 'ghost'
- * @param {string} size - 'sm' | 'md' | 'lg'
- * @param {string} href - Optional link URI
- * @param {string} class - Additional CSS classes
- */
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
+type ButtonSize = "sm" | "md" | "lg";
+
+interface Props {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  href?: string;
+  class?: string;
+  type?: "submit" | "reset" | "button";
+  [key: string]: unknown;
+}
+
 const {
   variant = "primary",
   size = "md",
   href,
   class: className = "",
   ...rest
-} = Astro.props;
+} = Astro.props as Props;
 
 const Element = href ? "a" : "button";
 
 const baseStyles = "btn-base";
 const variants = {
   primary: "variant-primary",
+  secondary: "variant-secondary",
   outline: "variant-outline",
   ghost: "variant-ghost",
 };
@@ -32,11 +36,7 @@ const sizes = {
 };
 ---
 
-<Element
-  href={href}
-  class:list={[baseStyles, variants[variant], sizes[size], className]}
-  {...rest}
->
+<Element href={href} class:list={[baseStyles, variants[variant], sizes[size], className]} {...rest}>
   <slot />
 </Element>
 
@@ -60,18 +60,18 @@ const sizes = {
   }
 
   /* Sizes */
-  .size-sm { 
-    padding: 0.6rem 1.25rem; 
-    font-size: 0.875rem; 
+  .size-sm {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
     letter-spacing: 0.02em;
   }
-  .size-md { 
-    padding: 0.85rem 1.75rem; 
-    font-size: 1rem; 
+  .size-md {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
   }
-  .size-lg { 
-    padding: 1.15rem 2.5rem; 
-    font-size: 1.125rem; 
+  .size-lg {
+    padding: 1.15rem 2.5rem;
+    font-size: 1.125rem;
     border-radius: var(--radius-md);
   }
 
@@ -81,7 +81,7 @@ const sizes = {
     border-color: var(--color-action-primary);
     color: var(--color-neutral-0);
   }
-  
+
   .variant-primary:hover {
     background-color: var(--color-action-primary-hover);
     border-color: var(--color-action-primary-hover);
@@ -98,7 +98,7 @@ const sizes = {
     border-color: var(--color-action-primary);
     color: var(--color-action-primary);
   }
-  
+
   .variant-outline:hover {
     background-color: var(--color-action-primary);
     color: var(--color-neutral-0);
@@ -111,7 +111,7 @@ const sizes = {
     border-color: transparent;
     color: var(--color-text-secondary);
   }
-  
+
   .variant-ghost:hover {
     background-color: var(--color-bg-sunken);
     color: var(--color-text-primary);

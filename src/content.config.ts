@@ -34,10 +34,14 @@ const projects = defineCollection({
     order: z.number().default(0),
     challenge: z.string().optional(),
     challengePoints: z.array(z.string()).optional(),
-    process: z.array(z.object({
-      title: z.string(),
-      text: z.string()
-    })).optional(),
+    process: z
+      .array(
+        z.object({
+          title: z.string(),
+          text: z.string(),
+        })
+      )
+      .optional(),
     toolsApplied: z.array(z.string()).optional(),
   }),
 });

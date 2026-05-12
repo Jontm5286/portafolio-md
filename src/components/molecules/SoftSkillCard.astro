@@ -29,28 +29,28 @@ const { title, description } = Astro.props;
 </div>
 
 <style>
-  .soft-skill-card {
-    background-color: var(--color-neutral-100);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.2s ease;
-  }
+   .soft-skill-card {
+     background-color: var(--color-bg-sunken);
+     padding: var(--space-md);
+     border-radius: var(--radius-md);
+     display: flex;
+     flex-direction: column;
+     gap: 0.5rem;
+     transition: transform 0.2s ease;
+   }
 
-  .soft-skill-card:hover {
-    transform: translateY(-3px);
-  }
+   .soft-skill-card:hover {
+     transform: translateY(-3px);
+   }
 
-  .skill-icon {
-    color: var(--color-green-vogue-950);
-    margin-bottom: 0.25rem;
-  }
+   .skill-icon {
+     color: var(--color-accent);
+     margin-bottom: 0.25rem;
+   }
 
-  .skill-title {
-    color: var(--color-green-vogue-950);
-  }
+   .skill-title {
+     color: var(--color-text-primary);
+   }
 
   .skill-description {
     line-height: 1.5;

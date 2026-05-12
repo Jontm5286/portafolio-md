@@ -1,21 +1,14 @@
 ---
 import Typography from "@/components/atoms/Typography.astro";
 import DirectAccessItem from "@/components/molecules/DirectAccessItem.astro";
-import Badge from "@/components/atoms/Badge.astro";
-
-/**
- * ContactSidebar Organism
- * Side section with direct contact links and availability status.
- */
 ---
 
 <aside class="contact-sidebar">
   <div class="sidebar-header">
-    <Typography tag="h3" size="2xl" weight="bold" class="mb-2">
-      Direct Access
-    </Typography>
+    <Typography tag="h3" size="2xl" weight="bold" class="mb-2"> Direct Access </Typography>
     <Typography tag="p" size="sm" color="muted" class="mb-8">
-      Prefer direct communication? Use the channels below to reach my desk or book a dedicated session.
+      Prefer direct communication? Use the channels below to reach my desk or book a dedicated
+      session.
     </Typography>
   </div>
 
@@ -33,8 +26,7 @@ import Badge from "@/components/atoms/Badge.astro";
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        ><path
-          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+        ><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
         ></path><polyline points="22,6 12,13 2,6"></polyline></svg
       >
     </DirectAccessItem>
@@ -77,12 +69,9 @@ import Badge from "@/components/atoms/Badge.astro";
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        ><path
-          d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-        ></path><rect x="2" y="9" width="4" height="12"></rect><circle
-          cx="4"
-          cy="4"
-          r="2"></circle></svg
+        ><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+        ></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"
+        ></circle></svg
       >
     </DirectAccessItem>
   </div>
@@ -98,17 +87,14 @@ import Badge from "@/components/atoms/Badge.astro";
         stroke-linejoin="round"
         class="download-icon"
         ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline
-          points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"
-        ></line></svg
+          points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg
       >
       <Typography tag="span" size="xs" weight="bold">Download CV</Typography>
     </a>
 
     <div class="availability-badge mt-6">
       <div class="status-dot pulse"></div>
-      <Typography tag="span" size="xs" weight="bold">
-        Currently accepting new projects
-      </Typography>
+      <Typography tag="span" size="xs" weight="bold"> Currently accepting new projects </Typography>
     </div>
   </div>
 </aside>

@@ -1,12 +1,12 @@
 ---
-/**
- * Badge Component
- * Small pills for labels, categories or statuses.
- *
- * @param {string} variant - 'default' | 'accent' | 'outline'
- * @param {string} className - Additional CSS classes
- */
-const { variant = "default", class: className = "", ...rest } = Astro.props;
+type BadgeVariant = "default" | "accent" | "outline";
+
+interface Props {
+  variant?: BadgeVariant;
+  class?: string;
+}
+
+const { variant = "default", class: className = "", ...rest } = Astro.props as Props;
 
 const variants = {
   default: "bg-surface text-accent",

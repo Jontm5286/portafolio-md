@@ -1,13 +1,6 @@
 ---
 import Typography from "@/components/atoms/Typography.astro";
-import Badge from "@/components/atoms/Badge.astro";
 
-/**
- * ProjectCard Organism
- * Optimized for Lighthouse: 
- * - Fixed aspect ratio to prevent CLS.
- * - Descriptive ARIA labels for accessibility.
- */
 interface Props {
   title: string;
   category: string;
@@ -28,10 +21,10 @@ const { title, category, description, imageUrl, tags = [], href = "#", ...rest }
 >
   <a href={href} class="card-media" aria-label={`View details for ${title}`}>
     <div class="image-container">
-      <img 
-        src={imageUrl} 
-        alt={`Screenshot of ${title} project`} 
-        class="project-image" 
+      <img
+        src={imageUrl}
+        alt={`Screenshot of ${title} project`}
+        class="project-image"
         width="800"
         height="500"
         loading="lazy"
@@ -53,11 +46,9 @@ const { title, category, description, imageUrl, tags = [], href = "#", ...rest }
     <Typography tag="p" size="sm" color="muted" class="project-description">
       {description}
     </Typography>
-    
+
     <div class="card-tags">
-      {tags.slice(0, 3).map(tag => (
-        <span class="mini-tag">{tag}</span>
-      ))}
+      {tags.slice(0, 3).map((tag) => <span class="mini-tag">{tag}</span>)}
     </div>
 
     <a href={href} class="view-link" aria-label={`Read case study for ${title}`}>
@@ -118,7 +109,7 @@ const { title, category, description, imageUrl, tags = [], href = "#", ...rest }
   .media-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.3));
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.3));
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -133,9 +124,9 @@ const { title, category, description, imageUrl, tags = [], href = "#", ...rest }
     gap: 0.75rem;
   }
 
-  .project-title {
-    color: var(--color-green-vogue-950);
-  }
+   .project-title {
+     color: var(--color-text-primary);
+   }
 
   .project-description {
     line-height: 1.6;

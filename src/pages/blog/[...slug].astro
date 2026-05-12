@@ -27,10 +27,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout title={`${post.data.title} | Miguel Damiron`} description={post.data.description}>
-  <Navbar />
+ <BaseLayout title={`${post.data.title} | Miguel Damiron`} description={post.data.description}>
+   <Navbar />
 
-  <article class="post-page">
+   <main id="main-content">
+     <article class="post-page">
     <header class="post-header section-padding">
       <div class="container">
         <div class="post-meta mb-6">
@@ -39,9 +40,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
           </Typography>
           <span class="separator">•</span>
           <div class="post-tags">
-            {post.data.tags.map((tag) => (
-              <span class="tag-badge">{tag}</span>
-            ))}
+            {post.data.tags.map((tag) => <span class="tag-badge">{tag}</span>)}
           </div>
         </div>
 
@@ -49,11 +48,13 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
           {post.data.title}
         </Typography>
 
-        {post.data.image && (
-          <div class="post-hero-image mt-12">
-            <img src={post.data.image} alt={post.data.title} />
-          </div>
-        )}
+        {
+          post.data.image && (
+            <div class="post-hero-image mt-12">
+               <img src={post.data.image} alt={`Featured image for article: ${post.data.title}`} loading="lazy" decoding="async" />
+            </div>
+          )
+        }
       </div>
     </header>
 
@@ -63,10 +64,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
           <Content />
         </div>
       </div>
-    </section>
-  </article>
+     </section>
+   </article>
+   </main>
 
-  <Footer />
+   <Footer />
 </BaseLayout>
 
 <style>
@@ -78,33 +80,33 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
     max-width: 800px;
   }
 
-  .post-title {
-    color: var(--color-green-vogue-950);
-    line-height: 1.1;
-  }
+   .post-title {
+     color: var(--color-text-primary);
+     line-height: 1.1;
+   }
 
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+   .post-meta {
+     display: flex;
+     align-items: center;
+     gap: 1rem;
+   }
 
-  .separator {
-    color: var(--color-neutral-300);
-  }
+   .separator {
+     color: var(--color-border);
+   }
 
-  .post-tags {
-    display: flex;
-    gap: 0.5rem;
-  }
+   .post-tags {
+     display: flex;
+     gap: 0.5rem;
+   }
 
-  .tag-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--color-neutral-500);
-    letter-spacing: 0.05em;
-  }
+   .tag-badge {
+     font-size: 0.75rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     color: var(--color-text-muted);
+     letter-spacing: 0.05em;
+   }
 
   .post-hero-image {
     width: 100%;
@@ -119,21 +121,21 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
     object-fit: cover;
   }
 
-  /* Basic Prose Styles */
-  .prose {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    color: var(--color-neutral-800);
-  }
+   /* Basic Prose Styles */
+   .prose {
+     font-size: 1.125rem;
+     line-height: 1.8;
+     color: var(--color-text-primary);
+   }
 
-  .prose :global(h2) {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--color-green-vogue-950);
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
+   .prose :global(h2) {
+     font-size: 2rem;
+     font-weight: 800;
+     color: var(--color-text-primary);
+     margin-top: 3rem;
+     margin-bottom: 1.5rem;
+     text-transform: uppercase;
+   }
 
   .prose :global(p) {
     margin-bottom: 1.5rem;
@@ -148,10 +150,18 @@ const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
     margin-bottom: 0.5rem;
   }
 
-  .mb-6 { margin-bottom: 1.5rem; }
-  .mt-12 { margin-top: 3rem; }
-  .pb-24 { padding-bottom: 6rem; }
-  .uppercase { text-transform: uppercase; }
+  .mb-6 {
+    margin-bottom: 1.5rem;
+  }
+  .mt-12 {
+    margin-top: 3rem;
+  }
+  .pb-24 {
+    padding-bottom: 6rem;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
 
   @media (max-width: 768px) {
     .post-page {

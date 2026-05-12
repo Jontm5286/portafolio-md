@@ -20,14 +20,16 @@ import Button from "@/components/atoms/Button.astro";
 >
   <Navbar />
 
-  <main class="skills-page">
+   <main class="skills-page" id="main-content">
     <header class="page-header section-padding">
       <div class="container">
         <Typography tag="h1" size="5xl" weight="black" class="uppercase main-title">
           Skills<span class="text-accent">.</span>
         </Typography>
         <Typography tag="p" size="lg" color="muted" class="max-w-3xl mt-6">
-          A synthesis of technical architecture and strategic communication. I bridge the gap between raw data and executive decision-making through a curated stack of BI tools and methodologies.
+          A synthesis of technical architecture and strategic communication. I bridge the gap
+          between raw data and executive decision-making through a curated stack of BI tools and
+          methodologies.
         </Typography>
       </div>
     </header>
@@ -54,9 +56,7 @@ import Button from "@/components/atoms/Button.astro";
               Let's discuss how my technical skills can solve your specific business challenges.
             </Typography>
           </div>
-          <Button variant="primary" size="lg" href="/contact">
-            Get in Touch →
-          </Button>
+          <Button variant="primary" size="lg" href="/contact"> Get in Touch → </Button>
         </div>
       </div>
     </section>
@@ -70,30 +70,30 @@ import Button from "@/components/atoms/Button.astro";
     padding-top: 5rem;
   }
 
-  .main-title {
-    color: var(--color-green-vogue-950);
-  }
+   .main-title {
+     color: var(--color-text-primary);
+   }
 
-  .text-accent {
-    color: var(--color-accent);
-  }
+   .text-accent {
+     color: var(--color-accent);
+   }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
-    align-items: start;
-  }
+   .skills-grid {
+     display: grid;
+     grid-template-columns: 1.2fr 0.8fr;
+     gap: 4rem;
+     align-items: start;
+   }
 
-  .cta-box {
-    background-color: var(--color-neutral-100);
-    padding: 4rem;
-    border-radius: var(--radius-lg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-  }
+   .cta-box {
+     background-color: var(--color-bg-sunken);
+     padding: 4rem;
+     border-radius: var(--radius-lg);
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 2rem;
+   }
 
   .max-w-3xl {
     max-width: 48rem;

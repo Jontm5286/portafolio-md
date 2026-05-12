@@ -1,27 +1,21 @@
 ---
 import { Image } from "astro:assets";
 import Typography from "@/components/atoms/Typography.astro";
-import Badge from "@/components/atoms/Badge.astro";
-import profileImage from "@/../public/miguel.png"; // Importing for optimization
-
-/**
- * AboutHero Organism
- * Main hero section for the About page.
- */
+import profileImage from "@/../public/miguel.webp";
 ---
 
 <section class="about-hero section-padding">
   <div class="container about-hero-container">
     <div class="about-image-side">
       <div class="image-frame">
-        <Image 
-          src={profileImage} 
-          alt="Miguel Damiron" 
-          width={800} 
+        <Image
+          src={profileImage}
+          alt="Miguel Damiron"
+          width={800}
           height={1000}
-          loading="eager" 
+          loading="eager"
           fetchpriority="high"
-          class="profile-image" 
+          class="profile-image"
         />
       </div>
     </div>
@@ -38,11 +32,15 @@ import profileImage from "@/../public/miguel.png"; // Importing for optimization
       </Typography>
 
       <Typography tag="p" size="lg" weight="medium" class="mb-6 bio-intro">
-        A Senior Data & BI Manager specializing in transforming complex architectural data blueprints into actionable business intelligence. With over a decade of experience, I bridge the gap between technical engineering precision and strategic executive leadership.
+        A Senior Data & BI Manager specializing in transforming complex architectural data
+        blueprints into actionable business intelligence. With over a decade of experience, I bridge
+        the gap between technical engineering precision and strategic executive leadership.
       </Typography>
 
       <Typography tag="p" color="muted" class="bio-text">
-        My approach is defined by the "precision-first" methodology. I believe that data is not just a collection of numbers, but a structural foundation that requires rigorous maintenance and sophisticated orchestration to drive real-world impact.
+        My approach is defined by the "precision-first" methodology. I believe that data is not just
+        a collection of numbers, but a structural foundation that requires rigorous maintenance and
+        sophisticated orchestration to drive real-world impact.
       </Typography>
     </div>
   </div>
@@ -88,11 +86,11 @@ import profileImage from "@/../public/miguel.png"; // Importing for optimization
   }
 
   .name-title {
-    color: var(--color-green-vogue-950);
+    color: var(--color-text-primary);
   }
 
   .bio-intro {
-    color: var(--color-neutral-800);
+    color: var(--color-text-secondary);
     line-height: 1.5;
   }
 

@@ -17,23 +17,18 @@ import Typography from "@/components/atoms/Typography.astro";
 >
   <Navbar />
 
-  <main class="blog-page">
+   <main class="blog-page" id="main-content">
     <header class="page-header section-padding">
       <div class="container">
-        <Typography
-          tag="span"
-          size="xs"
-          weight="bold"
-          class="uppercase tracking-widest muted-text"
-        >
+        <Typography tag="span" size="xs" weight="bold" class="uppercase tracking-widest muted-text">
           Insights & Strategy
         </Typography>
         <Typography tag="h1" size="5xl" weight="black" class="uppercase mt-2 main-title">
           The Blog<span class="text-accent">.</span>
         </Typography>
         <Typography tag="p" size="lg" color="muted" class="max-w-2xl mt-6">
-          Exploring the intersection of data engineering precision and strategic
-          executive leadership.
+          Exploring the intersection of data engineering precision and strategic executive
+          leadership.
         </Typography>
       </div>
     </header>
@@ -54,17 +49,17 @@ import Typography from "@/components/atoms/Typography.astro";
     padding-top: 5rem;
   }
 
-  .main-title {
-    color: var(--color-green-vogue-950);
-  }
+   .main-title {
+     color: var(--color-text-primary);
+   }
 
-  .text-accent {
-    color: var(--color-accent);
-  }
+   .text-accent {
+     color: var(--color-accent);
+   }
 
-  .muted-text {
-    color: var(--color-neutral-500);
-  }
+   .muted-text {
+     color: var(--color-text-muted);
+   }
 
   .max-w-2xl {
     max-width: 42rem;

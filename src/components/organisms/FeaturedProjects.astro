@@ -8,9 +8,7 @@ import ProjectCard from "./ProjectCard.astro";
  * Grid layout for project cards fetched from content collection.
  */
 const allProjects = await getCollection("projects");
-const projects = allProjects
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3); // Solo mostramos los 3 primeros en la Home
+const projects = allProjects.sort((a, b) => a.data.order - b.data.order).slice(0, 3); // Solo mostramos los 3 primeros en la Home
 ---
 
 <section id="projects" class="projects-section section-padding">
@@ -31,12 +29,7 @@ const projects = allProjects
         </Typography>
       </div>
       <a href="/projects" class="view-all">
-        <Typography
-          tag="span"
-          size="sm"
-          weight="bold"
-          class="uppercase tracking-wider"
-        >
+        <Typography tag="span" size="sm" weight="bold" class="uppercase tracking-wider">
           View All Works
         </Typography>
       </a>
@@ -48,7 +41,7 @@ const projects = allProjects
           <ProjectCard
             title={project.data.title}
             category={project.data.category}
-            description={project.data.description}
+            description={project.data.summary}
             imageUrl={project.data.imageUrl}
             tags={project.data.tags}
             href={`/projects/${project.id}`}

@@ -16,15 +16,13 @@ import profileImage from "@/../public/miguel.webp";
 <section id="home" class="hero-section section-padding">
   <div class="container hero-container">
     <div class="hero-content">
-      <Badge variant="default" class="mb-6 animate-hero">
-        Senior Data & BI Manager
-      </Badge>
+      <Badge variant="default" class="mb-6 animate-hero"> Senior Data & BI Manager </Badge>
       <div class="hero-title-group mb-6">
         <Typography
           tag="h1"
           size="hero"
           weight="medium"
-          color="accent"
+          color="primary"
           class="leading-none block animate-hero"
         >
           Miguel
@@ -40,27 +38,21 @@ import profileImage from "@/../public/miguel.webp";
         </Typography>
       </div>
 
-      <Typography
-        tag="p"
-        size="lg"
-        color="muted"
-        class="mb-10 max-w-lg animate-hero"
-      >
-        Bridging the gap between raw data and actionable business intelligence
-        through engineered analytics.
+      <Typography tag="p" size="lg" color="muted" class="mb-10 max-w-lg animate-hero">
+        Bridging the gap between raw data and actionable business intelligence through engineered
+        analytics.
       </Typography>
 
       <div class="hero-actions mb-12 animate-hero">
-        <Button variant="primary" size="lg" href="/projects">
-          View Projects
-        </Button>
-        <Button
-          variant="outline"
-          size="lg"
-          href="/public/Miguel Damiron Senior Data & BI Manager Resume 2026.pdf"
-        >
-          Download CV
-        </Button>
+        <Button variant="primary" size="lg" href="/projects"> View Projects </Button>
+         <Button
+           variant="outline"
+           size="lg"
+           href="/Miguel Damiron Senior Data & BI Manager Resume 2026.pdf"
+           download
+         >
+           Download CV
+         </Button>
       </div>
     </div>
 
@@ -121,7 +113,7 @@ import profileImage from "@/../public/miguel.webp";
           autoAlpha: 0,
           duration: 1.2,
         },
-        "-=0.8",
+        "-=0.8"
       )
       // 3. Reveal stats from the right
       .from(
@@ -132,7 +124,7 @@ import profileImage from "@/../public/miguel.webp";
           stagger: 0.1,
           duration: 0.8,
         },
-        "-=0.6",
+        "-=0.6"
       );
   }
 
@@ -190,11 +182,7 @@ import profileImage from "@/../public/miguel.webp";
     transform: translate(-50%, -50%);
     width: 140%;
     height: 140%;
-    background: radial-gradient(
-      circle,
-      var(--color-action-primary) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(circle, var(--color-action-primary) 0%, transparent 70%);
     z-index: -1;
   }
 

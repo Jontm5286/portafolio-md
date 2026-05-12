@@ -10,9 +10,7 @@ const posts = await getCollection("blog", ({ data }) => {
   return data.draft !== true;
 });
 
-const sortedPosts = posts.sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
-);
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <div class="blog-grid">

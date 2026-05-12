@@ -26,9 +26,11 @@ const { title, summary, category, tags } = Astro.props;
       <Typography tag="h1" size="5xl" weight="black" class="project-title mt-4">
         {title}
       </Typography>
-      <Typography tag="p" size="lg" color="muted" class="project-summary mt-6">
-        {summary}
-      </Typography>
+      <div>
+        <Typography tag="p" size="lg" color="muted" class="project-summary mt-6">
+          {summary}
+        </Typography>
+      </div>
     </div>
 
     <div class="hero-tools">
@@ -57,7 +59,7 @@ const { title, summary, category, tags } = Astro.props;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 4rem;
-    align-items: flex-start;
+    align-items: flex-end;
   }
 
   .category-badge {
@@ -68,10 +70,10 @@ const { title, summary, category, tags } = Astro.props;
     display: inline-block;
   }
 
-  .project-title {
-    color: var(--color-green-vogue-950);
-    line-height: 1.1;
-  }
+   .project-title {
+     color: var(--color-text-primary);
+     line-height: 1.1;
+   }
 
   .project-summary {
     line-height: 1.6;

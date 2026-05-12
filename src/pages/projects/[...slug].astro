@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Navbar from "@/components/organisms/Navbar.astro";
 import ProjectDetailHero from "@/components/organisms/ProjectDetailHero.astro";
@@ -22,8 +22,7 @@ export async function getStaticPaths() {
     props: {
       project,
       prevProject: index > 0 ? sortedProjects[index - 1] : null,
-      nextProject:
-        index < sortedProjects.length - 1 ? sortedProjects[index + 1] : null,
+      nextProject: index < sortedProjects.length - 1 ? sortedProjects[index + 1] : null,
     },
   }));
 }
@@ -31,13 +30,10 @@ export async function getStaticPaths() {
 const { project, prevProject, nextProject } = Astro.props;
 ---
 
-<BaseLayout
-  title={`${project.data.title} | Miguel Damiron`}
-  description={project.data.summary}
->
+<BaseLayout title={`${project.data.title} | Miguel Damiron`} description={project.data.summary}>
   <Navbar />
 
-  <main class="project-detail-page">
+   <main class="project-detail-page" id="main-content">
     <ProjectDetailHero
       title={project.data.title}
       summary={project.data.summary}
@@ -47,18 +43,11 @@ const { project, prevProject, nextProject } = Astro.props;
 
     {
       project.data.challenge && (
-        <ChallengeSection
-          text={project.data.challenge}
-          points={project.data.challengePoints}
-        />
+        <ChallengeSection text={project.data.challenge} points={project.data.challengePoints ?? []} />
       )
     }
 
-    {
-      project.data.process && (
-        <ProcessSection steps={project.data.process} />
-      )
-    }
+    {project.data.process && <ProcessSection steps={project.data.process} />}
 
     <section class="dashboard-preview section-padding">
       <div class="container">
@@ -74,17 +63,13 @@ const { project, prevProject, nextProject } = Astro.props;
             </Typography>
           </header>
           <div class="frame-content">
-            <img src={project.data.imageUrl} alt="Dashboard Preview" />
+             <img src={project.data.imageUrl} alt={`${project.data.title} dashboard preview`} loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
     </section>
 
-    {
-      project.data.impact && (
-        <ImpactSection items={project.data.impact} />
-      )
-    }
+    {project.data.impact && <ImpactSection items={project.data.impact} />}
 
     <section class="tech-stack-applied section-padding">
       <div class="container">
@@ -93,11 +78,15 @@ const { project, prevProject, nextProject } = Astro.props;
             Technology Stack Applied
           </Typography>
           <div class="stack-icons">
-            {project.data.toolsApplied?.map(tool => (
-              <div class="stack-item">
-                <Typography tag="span" size="xs" weight="bold">{tool}</Typography>
-              </div>
-            ))}
+            {
+              project.data.toolsApplied?.map((tool) => (
+                <div class="stack-item">
+                  <Typography tag="span" size="xs" weight="bold">
+                    {tool}
+                  </Typography>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -105,21 +94,37 @@ const { project, prevProject, nextProject } = Astro.props;
 
     <nav class="project-navigation">
       <div class="container nav-container">
-        {prevProject ? (
-          <a href={`/projects/${prevProject.id}`} class="nav-link prev">
-            <Typography tag="span" size="xs" weight="bold" class="nav-label">← Previous Project</Typography>
-            <Typography tag="p" size="xl" weight="bold" class="nav-title">{prevProject.data.title}</Typography>
-          </a>
-        ) : <div />}
+        {
+          prevProject ? (
+            <a href={`/projects/${prevProject.id}`} class="nav-link prev">
+              <Typography tag="span" size="xs" weight="bold" class="nav-label">
+                ← Previous Project
+              </Typography>
+              <Typography tag="p" size="xl" weight="bold" class="nav-title">
+                {prevProject.data.title}
+              </Typography>
+            </a>
+          ) : (
+            <div />
+          )
+        }
 
         <div class="nav-divider"></div>
 
-        {nextProject ? (
-          <a href={`/projects/${nextProject.id}`} class="nav-link next">
-            <Typography tag="span" size="xs" weight="bold" class="nav-label text-right">Next Project →</Typography>
-            <Typography tag="p" size="xl" weight="bold" class="nav-title text-right">{nextProject.data.title}</Typography>
-          </a>
-        ) : <div />}
+        {
+          nextProject ? (
+            <a href={`/projects/${nextProject.id}`} class="nav-link next">
+              <Typography tag="span" size="xs" weight="bold" class="nav-label text-right">
+                Next Project →
+              </Typography>
+              <Typography tag="p" size="xl" weight="bold" class="nav-title text-right">
+                {nextProject.data.title}
+              </Typography>
+            </a>
+          ) : (
+            <div />
+          )
+        }
       </div>
     </nav>
   </main>
@@ -136,7 +141,7 @@ const { project, prevProject, nextProject } = Astro.props;
     background-color: #1a202c;
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
   }
 
   .frame-header {
@@ -160,9 +165,15 @@ const { project, prevProject, nextProject } = Astro.props;
     background-color: #4a5568;
   }
 
-  .dot:nth-child(1) { background-color: #f56565; }
-  .dot:nth-child(2) { background-color: #ecc94b; }
-  .dot:nth-child(3) { background-color: #48bb78; }
+  .dot:nth-child(1) {
+    background-color: #f56565;
+  }
+  .dot:nth-child(2) {
+    background-color: #ecc94b;
+  }
+  .dot:nth-child(3) {
+    background-color: #48bb78;
+  }
 
   .frame-content {
     width: 100%;

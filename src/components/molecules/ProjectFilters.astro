@@ -33,7 +33,7 @@ const filters = ["All", "Tableau", "Power BI", "Business Analysis"];
   }
 
   .filters-bar {
-    background-color: var(--color-neutral-100);
+    background-color: var(--color-bg-sunken);
     padding: 0.4rem;
     border-radius: var(--radius-sm);
     display: flex;
@@ -47,17 +47,17 @@ const filters = ["All", "Tableau", "Power BI", "Business Analysis"];
     background: transparent;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: var(--color-neutral-600);
+    color: var(--color-text-secondary);
   }
 
   .filter-btn:hover {
-    color: var(--color-green-vogue-950);
+    color: var(--color-accent);
   }
 
   .filter-btn.active {
-    background-color: var(--color-neutral-0);
-    color: var(--color-green-vogue-950);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-bg-card);
+    color: var(--color-accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   }
 
   @media (max-width: 768px) {
@@ -85,7 +85,7 @@ const filters = ["All", "Tableau", "Power BI", "Business Analysis"];
       filterButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
 
-      const category = button.getAttribute("data-category");
+      const category = button.getAttribute("data-category") || "";
 
       // Filter project cards
       projectCards.forEach((card) => {
@@ -94,11 +94,7 @@ const filters = ["All", "Tableau", "Power BI", "Business Analysis"];
         const cardTags = card.getAttribute("data-tags") || "";
 
         // Match if category is 'all' OR filter exists in category OR filter exists in tags
-        if (
-          category === "all" ||
-          cardCategory.includes(category) ||
-          cardTags.includes(category)
-        ) {
+        if (category === "all" || cardCategory.includes(category) || cardTags.includes(category)) {
           htmlCard.style.display = "flex";
         } else {
           htmlCard.style.display = "none";

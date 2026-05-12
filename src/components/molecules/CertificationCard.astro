@@ -30,7 +30,7 @@ const { title, issuer } = Astro.props;
     </div>
     <div class="cert-status">Verified</div>
   </div>
-  
+
   <div class="cert-content">
     <Typography tag="span" size="xs" weight="bold" class="cert-issuer uppercase">
       {issuer}
@@ -42,18 +42,18 @@ const { title, issuer } = Astro.props;
 </div>
 
 <style>
-  .cert-card {
-    background-color: var(--color-neutral-0);
-    padding: var(--space-lg);
-    border-radius: var(--radius-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    border: 1px solid var(--color-neutral-100);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100%;
-  }
+   .cert-card {
+     background-color: var(--color-bg-card);
+     padding: var(--space-lg);
+     border-radius: var(--radius-sm);
+     display: flex;
+     flex-direction: column;
+     gap: 1.25rem;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+     border: 1px solid var(--color-border);
+     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+     height: 100%;
+   }
 
   .cert-card:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
@@ -83,13 +83,13 @@ const { title, issuer } = Astro.props;
     height: 18px;
   }
 
-  .cert-status {
-    font-size: 0.6rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--color-neutral-400);
-    letter-spacing: 0.1em;
-  }
+   .cert-status {
+     font-size: 0.6rem;
+     font-weight: 800;
+     text-transform: uppercase;
+     color: var(--color-text-muted);
+     letter-spacing: 0.1em;
+   }
 
   .cert-issuer {
     color: var(--color-accent-warm-text); /* Using the safe amber token (4.7:1 contrast) */
@@ -98,10 +98,10 @@ const { title, issuer } = Astro.props;
     letter-spacing: 0.08em;
   }
 
-  .cert-title {
-    color: var(--color-green-vogue-950);
-    line-height: 1.5;
-  }
+   .cert-title {
+     color: var(--color-text-primary);
+     line-height: 1.5;
+   }
 
   .uppercase {
     text-transform: uppercase;
