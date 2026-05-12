@@ -25,9 +25,26 @@ stack:
     icon: "bar-chart"
   - name: "Azure Data Lake"
     icon: "cloud"
+challenge: "The primary challenge was the lack of real-time visibility into logistical bottlenecks across multi-regional distribution centers, leading to delayed decision-making and increased operational costs."
+challengePoints:
+  - "Fragmented data sources across different geographical regions."
+  - "High latency in manual reporting processes (48+ hours delay)."
+  - "Inconsistent KPIs and metrics definitions between departments."
+process:
+  - title: "Data Integration"
+    text: "Orchestrated data pipelines to centralize information from SQL Server and Azure Data Lake, ensuring a single source of truth."
+  - title: "Metric Standardization"
+    text: "Defined and implemented weighted seasonality models using DAX to improve forecast accuracy and MAPE variance tracking."
+  - title: "Automated Reporting"
+    text: "Developed interactive Power BI dashboards with automated refresh schedules, reducing latency from 48 hours to 3 hours."
+toolsApplied: ["Power BI", "SQL Server", "DAX", "Python", "Azure Data Factory"]
 ---
 
-Stakeholders were struggling with a 48-hour data lag that prevented real-time decision-making during peak logistics windows. The existing legacy system failed to account for seasonal weighting, leading to skewed YoY comparisons that masked underlying operational inefficiencies.
+# Dynamic Market Volatility & Logistics Tracking
+
+This project involved the development of a sophisticated Week-over-Week (WoW) analysis framework designed to provide logistical managers with instant feedback on market changes.
+
+By leveraging advanced DAX patterns and automated data flows, the system identifies anomalies in transit times and cost fluctuations before they impact the bottom line. The solution replaced a legacy system of disconnected spreadsheets, providing a unified dashboard that tracks over $500M in annual logistical spend.
 
 ### Process & Methodology
 
