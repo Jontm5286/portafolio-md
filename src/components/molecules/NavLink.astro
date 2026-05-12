@@ -1,18 +1,17 @@
 ---
-import Typography from '@/components/atoms/Typography.astro';
+import Typography from "@/components/atoms/Typography.astro";
 
-/**
- * NavLink Molecule
- * Navigation item with hover animation.
- * 
- * @param {string} href - Link URI
- * @param {string} label - Text to display
- */
-const { href, label } = Astro.props;
+interface Props {
+  href: string;
+  label: string;
+  active?: boolean;
+}
+
+const { href, label, active = false } = Astro.props;
 ---
 
 <li class="nav-item">
-  <a href={href}>
+  <a href={href} {...(active ? { "aria-current": "page" } : {})}>
     <Typography tag="span" size="sm" weight="medium" class="nav-text uppercase tracking-widest">
       {label}
     </Typography>
@@ -36,7 +35,7 @@ const { href, label } = Astro.props;
 
   /* Animated underline effect */
   .nav-item::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -46,9 +45,19 @@ const { href, label } = Astro.props;
     transition: width 0.3s ease;
   }
 
-  .nav-item:hover::after {
+   .nav-item:hover::after {
     width: 100%;
   }
-  
-  .tracking-widest { letter-spacing: 0.1em; }
+
+  .nav-item:has([aria-current="page"]) .nav-text {
+    color: var(--color-text-primary);
+  }
+
+  .nav-item:has([aria-current="page"])::after {
+    width: 100%;
+  }
+
+  .tracking-widest {
+    letter-spacing: 0.1em;
+  }
 </style>

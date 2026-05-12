@@ -1,24 +1,22 @@
 ---
-import '@/styles/global.css';
+import "@/styles/global.css";
 
-/**
- * BaseLayout Component
- * The main wrapper for all pages, containing SEO metadata and global styles.
- * 
- * @param {string} title - Page title
- * @param {string} description - Meta description for SEO
- * @param {string} image - Social share image
- */
-const { 
-  title = 'Miguel Damiron | Senior Data & BI Manager', 
-  description = 'Portfolio of Miguel Damiron, specializing in Data Engineering, BI, and Business Intelligence solutions.',
-  image = '/og-image.png' // Default OG image
-} = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://migueldamiron.com');
+const {
+  title = "Miguel Damiron | Senior Data & BI Manager",
+  description = "Portfolio of Miguel Damiron, specializing in Data Engineering, BI, and Business Intelligence solutions.",
+  image = "/og-image.png",
+} = Astro.props as Props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://migueldamiron.com");
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,7 +24,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://miguelda
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -49,38 +47,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://miguelda
     <!-- Theme initialization script (Blocking to avoid FOUC) -->
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
+        return "light";
       })();
 
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark-mode');
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark-mode");
       } else {
-        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.classList.remove("dark-mode");
       }
     </script>
-    
+
     <!-- Performance: Preconnect to external assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Google Fonts: Inter and Outfit with swap display for better FCP -->
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
-      media="print" 
+      media="print"
       onload="this.media='all'"
-    >
+    />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+      />
     </noscript>
-  </head>
+   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
 
     <script>
@@ -132,7 +131,26 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://miguelda
   </body>
 </html>
 
-<style is:global>
+ <style is:global>
+  /* Skip Link - visible only on focus */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--color-accent-warm);
+    color: var(--color-neutral-0);
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    z-index: 9999;
+    transition: top 0.2s ease;
+    text-decoration: none;
+    border-bottom-right-radius: var(--radius-md);
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
   /* Pre-animation state for reveal elements to avoid FOUC */
   [data-reveal] {
     visibility: hidden;

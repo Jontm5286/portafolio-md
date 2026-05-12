@@ -1,17 +1,25 @@
 ---
-import Typography from '@/components/atoms/Typography.astro';
-import Button from '@/components/atoms/Button.astro';
-import NavLink from '@/components/molecules/NavLink.astro';
-import ThemeToggle from '@/components/molecules/ThemeToggle.astro';
+import Typography from "@/components/atoms/Typography.astro";
+import Button from "@/components/atoms/Button.astro";
+import NavLink from "@/components/molecules/NavLink.astro";
+import ThemeToggle from "@/components/molecules/ThemeToggle.astro";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" },
   { label: "Projects", href: "/projects" },
   { label: "Skills", href: "/skills" },
   { label: "Blog", href: "/blog" },
 ];
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string, path: string): boolean {
+  if (href === "/") {
+    return path === "/" || path === "";
+  }
+  return path === href || path.startsWith(`${href}/`);
+}
 ---
 
 <header class="navbar">
@@ -26,11 +34,13 @@ const navItems = [
 
     <nav class="nav-links" aria-label="Main Navigation">
       <ul>
-        {navItems.map(item => (
-          <li>
-            <NavLink href={item.href} label={item.label} />
-          </li>
-        ))}
+        {
+          navItems.map((item) => (
+            <li>
+              <NavLink href={item.href} label={item.label} active={isActive(item.href, currentPath)} />
+            </li>
+          ))
+        }
       </ul>
     </nav>
 
@@ -67,7 +77,7 @@ const navItems = [
   }
 
   .logo-text {
-    color: var(--color-green-vogue-950);
+    color: var(--color-text-primary);
   }
 
   .text-accent {
