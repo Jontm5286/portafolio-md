@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Hermes agent skills (tooling, not project code)
+.agents/
